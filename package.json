@@ -4,13 +4,31 @@
   "description": "",
   "main": "index.js",
   "bin": {
-    "nodegen": "bin/nodegen.js"
+    "nodegen": "./bin/nodegen.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "cli",
+    "nodejs",
+    "gerador",
+    "boilerplate",
+    "scaffolding",
+    "rest",
+    "mvc",
+    "express",
+    "typescript",
+    "projeto",
+    "produtividade"
+  ],
+  "author": "Juelson Júnior",
   "license": "ISC",
-  "type": "module"
+  "type": "module",
+  "devDependencies": {
+    "@eslint/js": "^9.31.0",
+    "eslint": "^9.31.0",
+    "globals": "^16.3.0",
+    "prettier": "3.6.2"
+  }
 }
