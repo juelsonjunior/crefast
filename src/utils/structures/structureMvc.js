@@ -5,43 +5,47 @@ import {
     createIfNotExists,
     initializeProject,
 } from '../index.js';
+import { saveCliMetadata } from '../cliMetadata.js';
+import { resolverFolderConflict } from '../resolverFolderConflict.js';
+import { checkIfExist } from '../checkIfExists.js';
 
 export const structureMvc = async (answers) => {
-    const {
-        dir,
-        modelsPath,
-        viewsPath,
-        controllersPath,
-        routesPath,
-        configPath,
-        appPath,
-        serverPath,
-        //gitIgnorePath,
-        readmePath,
-    } = defineProjectPaths(answers.safeName);
+    let safeName = answers.safeName;
+    let paths = defineProjectPaths(safeName);
+    const exits = await checkIfExist(paths.dir);
+
+    if (exits) {
+        const result = await resolverFolderConflict(paths.dir, safeName);
+        if (result.action == 'cancel') return false;
+        if (result.action == 'rename') {
+            answers.safeName = result.newName;
+            safeName = result.newName;
+            paths = defineProjectPaths(safeName);
+        }
+    }
 
     try {
-        await createIfNotExists(modelsPath, 'dir');
-        await createIfNotExists(viewsPath, 'dir');
-        await createIfNotExists(controllersPath, 'dir');
-        await createIfNotExists(routesPath, 'dir');
-        await createIfNotExists(configPath, 'dir');
+        await createIfNotExists(paths.modelsPath, 'dir');
+        await createIfNotExists(paths.viewsPath, 'dir');
+        await createIfNotExists(paths.controllersPath, 'dir');
+        await createIfNotExists(paths.routesPath, 'dir');
+        await createIfNotExists(paths.configPath, 'dir');
         await createIfNotExists(
-            appPath,
+            paths.appPath,
             'file',
             `console.log("APP construido")`
         );
         await createIfNotExists(
-            serverPath,
+            paths.serverPath,
             'file',
             `console.log("SERVER construido")`
         );
-        //await createIfNotExists(gitIgnorePath, 'file', `node_modules/\n.env`);
         await createIfNotExists(
-            readmePath,
+            paths.readmePath,
             `# ${answers.safeName}\n README montado na minha CLI`
         );
-        await initializeProject(dir, answers);
+        await initializeProject(paths.dir, answers);
+        await saveCliMetadata(paths.dir, 'mvc');
         return true;
     } catch (err) {
         console.error(
@@ -50,4 +54,3 @@ export const structureMvc = async (answers) => {
         return false;
     }
 };
-
