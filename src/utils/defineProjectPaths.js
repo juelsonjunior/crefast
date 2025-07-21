@@ -16,6 +16,7 @@ export const defineProjectPaths = (projectName) => {
     const readmePath = `${dir}/README.md`;
 
     return {
+        dir,
         configPath,
         viewsPath,
         modelsPath,
