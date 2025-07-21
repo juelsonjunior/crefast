@@ -1,12 +1,12 @@
 import chalk from 'chalk';
 import { execa } from 'execa';
-import { editPackageJson } from './editPackageJson';
+import { editPackageJson } from './editPackageJson.js';
 
 export const initializeProject = async (dir, answers) => {
     try {
         console.log(chalk.gray(`✨ Inicializando projeto NPM em ${dir}...`));
         await execa('npm', ['init', '-y'], { cwd: dir });
-        await editPackageJson(dir, answers.name_project);
+        await editPackageJson(dir, answers.safeName);
         console.log(chalk.green('✅ Projeto iniciado com sucesso'));
     } catch (err) {
         console.error(
