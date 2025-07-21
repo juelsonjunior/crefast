@@ -2,9 +2,11 @@ import chalk from 'chalk';
 
 import { createIfNotExists } from './createIfNotExists';
 import { defineProjectPaths } from './defineProjectPaths';
+import { initializeProject } from './initializeProject';
 
 export const strutureMvc = async (answers) => {
     const {
+        dir,
         modelsPath,
         viewsPath,
         controllersPath,
@@ -37,9 +39,10 @@ export const strutureMvc = async (answers) => {
             readmePath,
             `# ${answers.projectName}\n README montado na minha CLI`
         );
+        await initializeProject(dir, answers);
         return true;
     } catch (err) {
-        console.log(
+        console.error(
             chalk.red('❌ Erro ao criar a estrutura REST', err.message)
         );
         return false;

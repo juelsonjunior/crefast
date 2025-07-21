@@ -2,9 +2,11 @@ import chalk from 'chalk';
 
 import { defineProjectPaths } from './defineProjectPaths.js';
 import { createIfNotExists } from './createIfNotExists.js';
+import { initializeProject } from './initializeProject.js';
 
 export const createStrutureModular = async (answers) => {
     const {
+        dir,
         controllersPath,
         servicesPath,
         repositoriesPath,
@@ -37,9 +39,10 @@ export const createStrutureModular = async (answers) => {
             readmePath,
             `# ${answers.projectName}\n README montado na minha CLI`
         );
+        await initializeProject(dir, answers);
         return true;
     } catch (err) {
-        console.log(
+        console.error(
             chalk.red('❌ Erro ao criar a estrutura Modular', err.message)
         );
         return false;
