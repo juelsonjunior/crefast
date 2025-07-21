@@ -17,3 +17,4 @@ export const editPackageJson = async (dir, name) => {
         throw err;
     }
 };
+
