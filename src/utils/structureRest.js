@@ -12,13 +12,21 @@ export const createStrutureREST = async (answers) => {
         gitIgnorePath,
         readmePath,
     } = defineProjectPaths(answers.projectName);
-    
+
     try {
-        await createIfNotExists(controllersPath);
-        await createIfNotExists(routesPath);
-        await createIfNotExists(appPath, `console.log("APP construido")`);
-        await createIfNotExists(serverPath, `console.log("SERVER construido")`);
-        await createIfNotExists(gitIgnorePath, `node_modules/\n.env`);
+        await createIfNotExists(controllersPath, 'dir');
+        await createIfNotExists(routesPath, 'dir');
+        await createIfNotExists(
+            appPath,
+            'file',
+            `console.log("APP construido")`
+        );
+        await createIfNotExists(
+            serverPath,
+            'file',
+            `console.log("SERVER construido")`
+        );
+        await createIfNotExists(gitIgnorePath, 'file', `node_modules/\n.env`);
         await createIfNotExists(
             readmePath,
             `# ${answers.projectName}\n README montado na minha CLI`
