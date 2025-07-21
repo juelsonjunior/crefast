@@ -8,12 +8,12 @@ export const defineProjectPaths = (projectName) => {
     const repositoriesPath = `${src}/repositorie`;
     const servicesPath = `${src}/service`;
     const routesPath = `${src}/routes`;
-    const appPath = `${dir}/app.js`;
-    const serverPath = `${dir}/server.js`;
-    const gitIgnorePath = `${dir}/.gitignore`;
-    const envPath = `${dir}/.env`;
-    const envExemplePath = `${dir}/.env.exemple`;
-    const readmePath = `${dir}/README.md`;
+    const appPath = `${src}/app.js`;
+    const serverPath = `${src}/server.js`;
+    const gitIgnorePath = `${src}/.gitignore`;
+    const envPath = `${src}/.env`;
+    const envExemplePath = `${src}/.env.exemple`;
+    const readmePath = `${src}/README.md`;
 
     return {
         dir,
