@@ -1,15 +1,18 @@
 import chalk from 'chalk';
 import { execa } from 'execa';
+import { editPackageJson } from './editPackageJson';
 
 export const initializeProject = async (dir, answers) => {
     try {
         console.log(chalk.gray(`✨ Inicializando projeto NPM em ${dir}...`));
         await execa('npm', ['init', '-y'], { cwd: dir });
+        await editPackageJson(dir, answers.name_project);
         console.log(chalk.green('✅ Projeto iniciado com sucesso'));
     } catch (err) {
-        console.log(
+        console.error(
             chalk.red('❌ Falha ao iniciar o projeto NPM:', err.message)
         );
+        throw err;
     }
 
     if (answers.use_express) {
@@ -18,12 +21,13 @@ export const initializeProject = async (dir, answers) => {
             await execa('npm', ['install', 'express'], { cwd: dir });
             console.log(chalk.green('✅ Express instalado com sucesso'));
         } catch (err) {
-            console.log(
+            console.error(
                 chalk.red(
                     '❌ Falha ao instalar o express no projeto:',
                     err.message
                 )
             );
+            throw err;
         }
     }
 
@@ -33,12 +37,13 @@ export const initializeProject = async (dir, answers) => {
             await execa('git', ['init'], { cwd: dir });
             console.log(chalk.green('✅ Git instalado com sucesso'));
         } catch (err) {
-            console.log(
+            console.error(
                 chalk.red(
                     '❌ Falha ao inicialzar o git no projeto:',
                     err.message
                 )
             );
+            throw err;
         }
     }
 
@@ -48,12 +53,13 @@ export const initializeProject = async (dir, answers) => {
             await execa('npm', ['install', 'dotenv'], { cwd: dir });
             console.log(chalk.green('✅ Dotenv instalado com sucesso'));
         } catch (err) {
-            console.log(
+            console.error(
                 chalk.red(
                     '❌ Falha ao instalar o dotenv no projeto:',
                     err.message
                 )
             );
+            throw err;
         }
     }
 };
