@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "bin": {
-    "nodegen": "./bin/nodegen.js"
+    "nodegen": "./bin/cli.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
