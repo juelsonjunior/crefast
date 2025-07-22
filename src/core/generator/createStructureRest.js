@@ -22,7 +22,7 @@ export const createStructureREST = async (answers) => {
             await createIfNotExists(paths.controllersPath, 'dir');
         });
 
-        await runWithSpinner('Criando pasta route', async () => {
+        await runWithSpinner('Criando pasta routes', async () => {
             await createIfNotExists(paths.routesPath, 'dir');
         });
         await runWithSpinner('Criando arquivo app.js', async () => {

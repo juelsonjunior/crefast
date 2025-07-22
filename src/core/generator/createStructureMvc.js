@@ -6,6 +6,7 @@ import {
     saveCliMetadata,
 } from '../../core/index.js';
 import { resolveFolderConflict } from '../../utils/resolveFolderConflict.js';
+import { runWithSpinner } from '../../utils/runWithSpinner.js';
 
 export const createStructureMvc = async (answers) => {
     const { safeName, canceled, paths } = await resolveFolderConflict(
@@ -17,31 +18,50 @@ export const createStructureMvc = async (answers) => {
     answers.safeName = safeName;
 
     try {
-        await createIfNotExists(paths.modelsPath, 'dir');
-        await createIfNotExists(paths.viewsPath, 'dir');
-        await createIfNotExists(paths.controllersPath, 'dir');
-        await createIfNotExists(paths.routesPath, 'dir');
-        await createIfNotExists(paths.configPath, 'dir');
-        await createIfNotExists(
-            paths.appPath,
-            'file',
-            `console.log("APP construido")`
-        );
-        await createIfNotExists(
-            paths.serverPath,
-            'file',
-            `console.log("SERVER construido")`
-        );
-        await createIfNotExists(
-            paths.readmePath,
-            `# ${answers.safeName}\n README montado na minha CLI`
-        );
+        await runWithSpinner('Criando pasta models', async () => {
+            await createIfNotExists(paths.modelsPath, 'dir');
+        });
+        await runWithSpinner('Criando pasta viwes', async () => {
+            await createIfNotExists(paths.viewsPath, 'dir');
+        });
+        await runWithSpinner('Criando pasta controllers', async () => {
+            await createIfNotExists(paths.controllersPath, 'dir');
+        });
+        await runWithSpinner('Criando pasta routes', async () => {
+            await createIfNotExists(paths.routesPath, 'dir');
+        });
+        await runWithSpinner('Criando pasta config', async () => {
+            await createIfNotExists(paths.configPath, 'dir');
+        });
+        await runWithSpinner('Criando arquivo app.js', async () => {
+            await createIfNotExists(
+                paths.appPath,
+                'file',
+                `console.log("APP construido")`
+            );
+        });
+        await runWithSpinner('Criando arquivo server.js', async () => {
+            await createIfNotExists(
+                paths.serverPath,
+                'file',
+                `console.log("SERVER construido")`
+            );
+        });
+        await runWithSpinner('Criando arquivo README.md', async () => {
+            await createIfNotExists(
+                paths.readmePath,
+                `# ${answers.safeName}\n README montado na minha CLI`
+            );
+        });
         await initializeProject(paths.dir, answers);
-        await saveCliMetadata(paths.dir, 'mvc');
+
+        await runWithSpinner('Salvando metadados do projeto', async () => {
+            await saveCliMetadata(paths.dir, 'mvc');
+        });
         return true;
     } catch (err) {
         console.error(
-            chalk.red('❌ Erro ao criar a estrutura REST', err.message)
+            chalk.red('❌ Erro ao criar a estrutura MVC', err.message)
         );
         return false;
     }
