@@ -5,7 +5,7 @@ const program = new Command();
 
 program
     .name('nodegen')
-    .description('CLI para gerar estrutura de projetos')
+    .description('🚀 Gerador de estrutura para projetos Node.js')
     .version('1.0.0');
 
 createCommand(program);

@@ -3,7 +3,7 @@ import { mergeAnswers } from '../utils/mergeAnswers.js';
 export const createCommand = (program) => {
     program
         .command('create [project_name]')
-        .description('Cria um novo projeto com estrutura REST, MVC ou MODULAR')
+        .description('📦 Cria um novo projeto com a estrutura escolhida')
         .option('-n, --name <name>', 'Nome do projeto')
         .option(
             '-t, --structure <type>',
