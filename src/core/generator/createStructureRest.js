@@ -9,12 +9,13 @@ import { runWithSpinner } from '../../utils/runWithSpinner.js';
 import { resolveFolderConflict } from '../../utils/resolveFolderConflict.js';
 
 export const createStructureREST = async (answers) => {
-    const result = await resolveFolderConflict(answers.safeName);
+    const { safeName, canceled, paths } = await resolveFolderConflict(
+        answers.safeName
+    );
 
-    if (result.canceled) return false;
+    if (canceled) return false;
 
-    answers.safeName = result.safeName;
-    const paths = result.paths;
+    answers.safeName = safeName;
 
     try {
         await runWithSpinner('Criando pasta controllers', async () => {
