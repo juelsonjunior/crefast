@@ -13,41 +13,44 @@ export const createAnswers = async (options) => {
             type: 'input',
             name: 'project_name',
             message: 'Qual é o nome do projeto',
-            default: options.name || undefined,
+            default: options.name,
+            when: !options.name,
         },
         {
             type: 'list',
             name: 'structure',
             message: 'Qual estrutura quer usar?',
             choices: ['REST', 'MVC', 'MODULAR'],
-            default: options.structure || undefined,
+            default: options.structure,
+            when: !options.structure,
         },
     ]);
 
-    const safeName = answers.project_name
+    
+    const answersMerged = { ...answers, ...options };
+    const finalName = answersMerged.name || answersMerged.project_name;
+    if (!finalName || !finalName.trim()) {
+        return console.log(chalk.red('❌ Preencha o nome do projeto'));
+    }
+    answersMerged.safeName = finalName
         .trim()
         .toLowerCase()
         .replace(/[^a-z0-9-_]/g, '-');
-
-    if (!safeName) {
-        return console.log(chalk.red('❌ Preencha o nome do projeto'));
-    }
 
     const structureHandler = {
         rest: structureREST,
         mvc: structureMvc,
         modular: structureModular,
     };
-
-    const structureType = answers.structure.toLowerCase();
+    
+    const structureType = answersMerged.structure.toLowerCase();
     const handler = structureHandler[structureType];
-
     if (!handler) {
         console.error(chalk.red('❌ Estrutura inválida selecionada'));
         return;
     }
 
-    const success = await handler({ ...answers, safeName });
+    const success = await handler(answersMerged);
 
     if (success) {
         console.log(chalk.green('✅ Estrutura criada com sucesso!'));
