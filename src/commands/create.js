@@ -1,4 +1,4 @@
-import { createAnswers } from '../utils/index.js';
+import { mergeAnswers } from '../utils/mergeAnswers';
 
 export const createCommand = (program) => {
     program
@@ -17,6 +17,6 @@ export const createCommand = (program) => {
                 options.name = name;
             }
 
-            await createAnswers(options);
+            await mergeAnswers(options);
         });
 };
