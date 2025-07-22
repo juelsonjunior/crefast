@@ -5,8 +5,12 @@ import {
     initializeProject,
     saveCliMetadata,
 } from '../../core/index.js';
-import { runWithSpinner } from '../../utils/runWithSpinner.js';
-import { resolveFolderConflict } from '../../utils/resolveFolderConflict.js';
+import {
+    runWithSpinner,
+    resolveFolderConflict,
+    createFromTemplate,
+} from '../../utils/index.js';
+import { resolvePathTemplate } from '../../utils/resolvePath.js';
 
 export const createStructureREST = async (answers) => {
     const { safeName, canceled, paths } = await resolveFolderConflict(
@@ -14,35 +18,41 @@ export const createStructureREST = async (answers) => {
     );
 
     if (canceled) return false;
-
     answers.safeName = safeName;
 
     try {
         await runWithSpinner('Criando pasta controllers', async () => {
-            await createIfNotExists(paths.controllersPath, 'dir');
+            await createIfNotExists(paths.controllersPath);
+            await createFromTemplate(
+                resolvePathTemplate('rest/controllers', 'baseController.ejs'),
+                `${paths.controllersPath}/baseController.js`
+            );
         });
 
         await runWithSpinner('Criando pasta routes', async () => {
-            await createIfNotExists(paths.routesPath, 'dir');
+            await createIfNotExists(paths.routesPath);
+            await createFromTemplate(
+                resolvePathTemplate('rest/routes', 'baseRoute.ejs'),
+                `${paths.routesPath}/baseRoute.js`
+            );
         });
         await runWithSpinner('Criando arquivo app.js', async () => {
-            await createIfNotExists(
-                paths.appPath,
-                'file',
-                `console.log("APP construido")`
+            await createFromTemplate(
+                resolvePathTemplate('rest/', 'app.ejs'),
+                paths.appPath
             );
         });
         await runWithSpinner('Criando arquivo server.js', async () => {
-            await createIfNotExists(
-                paths.serverPath,
-                'file',
-                `console.log("SERVER construido")`
+            await createFromTemplate(
+                resolvePathTemplate('rest/', 'server.ejs'),
+                paths.serverPath
             );
         });
         await runWithSpinner('Criando README.md', async () => {
-            await createIfNotExists(
+            await createFromTemplate(
+                resolvePathTemplate('rest/', 'README.ejs'),
                 paths.readmePath,
-                `# ${answers.safeName}\n README montado na minha CLI`
+                { projectName: answers.safeName }
             );
         });
 
