@@ -1,4 +1,3 @@
-import chalk from 'chalk';
 import fs from 'fs/promises';
 import inquirer from 'inquirer';
 
@@ -19,12 +18,8 @@ export const askConflictPrompt = async (projectName) => {
     return action;
 };
 
-export const actionOverwrite = async (action, dir) => {
-    if (action == 'overwrite') {
-        console.log(chalk.yellow(`🧨 Apagando o diretório "${dir}"...`));
-        await fs.rm(dir, { recursive: true, force: true });
-        return { action: 'overwrite' };
-    }
+export const actionOverwrite = async (dir) => {
+    await fs.rm(dir, { recursive: true, force: true });
 };
 export const askNewNamePrompt = async () => {
     const { newName } = await inquirer.prompt([

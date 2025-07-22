@@ -1,57 +1,56 @@
 import chalk from 'chalk';
 
 import {
-    checkIfExist,
-    defineProjectPaths,
     createIfNotExists,
     initializeProject,
     saveCliMetadata,
-    askConflictPrompt,
-    actionOverwrite,
-    askNewNamePrompt,
 } from '../../core/index.js';
+import { runWithSpinner } from '../../utils/runWithSpinner.js';
+import { resolveFolderConflict } from '../../utils/resolveFolderConflict.js';
 
 export const createStructureREST = async (answers) => {
-    let safeName = answers.safeName;
-    let paths = defineProjectPaths(safeName);
-    const exits = await checkIfExist(paths.dir);
+    const result = await resolveFolderConflict(answers.safeName);
 
-    if (exits) {
-        const action = await askConflictPrompt(safeName);
+    if (result.canceled) return false;
 
-        if (action.action == 'cancel') return false;
-
-        if (action.action == 'rename') {
-            const { newName } = askNewNamePrompt();
-            answers.safeName = newName;
-            safeName = newName;
-            paths = defineProjectPaths(safeName);
-        }
-
-        if (action == 'overwrite') {
-            await actionOverwrite(action, paths.dir);
-        }
-    }
+    answers.safeName = result.safeName;
+    const paths = result.paths;
 
     try {
-        await createIfNotExists(paths.controllersPath, 'dir');
-        await createIfNotExists(paths.routesPath, 'dir');
-        await createIfNotExists(
-            paths.appPath,
-            'file',
-            `console.log("APP construido")`
-        );
-        await createIfNotExists(
-            paths.serverPath,
-            'file',
-            `console.log("SERVER construido")`
-        );
-        await createIfNotExists(
-            paths.readmePath,
-            `# ${answers.safeName}\n README montado na minha CLI`
-        );
+        await runWithSpinner('Criando pasta controllers', async () => {
+            await createIfNotExists(paths.controllersPath, 'dir');
+        });
+
+        await runWithSpinner('Criando pasta route', async () => {
+            await createIfNotExists(paths.routesPath, 'dir');
+        });
+        await runWithSpinner('Criando arquivo app.js', async () => {
+            await createIfNotExists(
+                paths.appPath,
+                'file',
+                `console.log("APP construido")`
+            );
+        });
+        await runWithSpinner('Criando arquivo server.js', async () => {
+            await createIfNotExists(
+                paths.serverPath,
+                'file',
+                `console.log("SERVER construido")`
+            );
+        });
+        await runWithSpinner('Criando README.md', async () => {
+            await createIfNotExists(
+                paths.readmePath,
+                `# ${answers.safeName}\n README montado na minha CLI`
+            );
+        });
+
         await initializeProject(paths.dir, answers);
-        await saveCliMetadata(paths.dir, 'rest');
+
+        await runWithSpinner('Salvando metadados do projeto', async () => {
+            await saveCliMetadata(paths.dir, 'rest');
+        });
+
         return true;
     } catch (err) {
         console.error(

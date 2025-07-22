@@ -1,37 +1,19 @@
 import chalk from 'chalk';
 
 import {
-    checkIfExist,
-    defineProjectPaths,
     createIfNotExists,
     initializeProject,
     saveCliMetadata,
-    askConflictPrompt,
-    actionOverwrite,
-    askNewNamePrompt,
 } from '../../core/index.js';
+import { resolveFolderConflict } from '../../utils/resolveFolderConflict.js';
 
 export const createStructureMvc = async (answers) => {
-    let safeName = answers.safeName;
-    let paths = defineProjectPaths(safeName);
-    const exits = await checkIfExist(paths.dir);
+    const result = await resolveFolderConflict(answers.safeName);
 
-    if (exits) {
-        const action = await askConflictPrompt(safeName);
+    if (result.canceled) return false;
 
-        if (action.action == 'cancel') return false;
-
-        if (action.action == 'rename') {
-            const { newName } = askNewNamePrompt();
-            answers.safeName = newName;
-            safeName = newName;
-            paths = defineProjectPaths(safeName);
-        }
-
-        if (action == 'overwrite') {
-            await actionOverwrite(action, paths.dir);
-        }
-    }
+    answers.safeName = result.safeName;
+    const paths = result.paths;
 
     try {
         await createIfNotExists(paths.modelsPath, 'dir');
