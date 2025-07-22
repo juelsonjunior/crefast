@@ -1,7 +1,7 @@
 //Imports Generator
 export { createStructureModular } from './generator/createStructureModular.js';
-export { createStructureMvc } from './genertor/createStructureMvc.js';
-export { createStructureREST } from './genertor/createStructureRest.js';
+export { createStructureMvc } from './generator/createStructureMvc.js';
+export { createStructureREST } from './generator/createStructureRest.js';
 
 //Imports Tasks
 export { checkIfExist } from './tasks/checkIfExists.js';
