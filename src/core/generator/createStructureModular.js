@@ -1,13 +1,15 @@
 import chalk from 'chalk';
 
 import {
+    checkIfExist,
     defineProjectPaths,
     createIfNotExists,
     initializeProject,
-} from '../../utils/index.js';
-import { checkIfExist } from '../checkIfExists.js';
-import { resolverFolderConflict } from '../../utils/resolverFolderConflict.js';
-import { saveCliMetadata } from '../cliMetadata.js';
+    saveCliMetadata,
+    askConflictPrompt,
+    actionOverwrite,
+    askNewNamePrompt,
+} from '../../core/index.js';
 
 export const createStructureModular = async (answers) => {
     let safeName = answers.safeName;
@@ -15,12 +17,19 @@ export const createStructureModular = async (answers) => {
     const exits = await checkIfExist(paths.dir);
 
     if (exits) {
-        const result = await resolverFolderConflict(paths.dir, safeName);
-        if (result.action == 'cancel') return false;
-        if (result.action == 'rename') {
-            answers.safeName = result.newName;
-            safeName = result.newName;
+        const action = await askConflictPrompt(safeName);
+
+        if (action.action == 'cancel') return false;
+
+        if (action.action == 'rename') {
+            const { newName } = askNewNamePrompt();
+            answers.safeName = newName;
+            safeName = newName;
             paths = defineProjectPaths(safeName);
+        }
+
+        if (action == 'overwrite') {
+            await actionOverwrite(action, paths.dir);
         }
     }
 
