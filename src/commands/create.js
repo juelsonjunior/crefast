@@ -1,4 +1,4 @@
-import { mergeAnswers } from '../utils/mergeAnswers';
+import { mergeAnswers } from '../utils/mergeAnswers.js';
 
 export const createCommand = (program) => {
     program
