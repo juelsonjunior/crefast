@@ -10,8 +10,4 @@ program
 
 createCommand(program);
 
-if (!process.argv.slice(2).length) {
-    program.outputHelp();
-}
-
 program.parse(program.argv);
