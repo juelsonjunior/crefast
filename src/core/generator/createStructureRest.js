@@ -49,7 +49,7 @@ export const createStructureREST = async (answers) => {
         await initializeProject(paths.dir, answers);
 
         await runWithSpinner('Salvando metadados do projeto', async () => {
-            await saveCliMetadata(paths.dir, 'rest');
+            await saveCliMetadata(paths.dir, answers);
         });
 
         return true;

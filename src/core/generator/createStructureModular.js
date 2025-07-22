@@ -57,7 +57,7 @@ export const createStructureModular = async (answers) => {
         await initializeProject(paths.dir, answers);
 
         await runWithSpinner('Salvando metadados do projeto', async () => {
-            await saveCliMetadata(paths.dir, 'mvc');
+            await saveCliMetadata(paths.dir, answers);
         });
         return true;
     } catch (err) {
