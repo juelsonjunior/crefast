@@ -4,13 +4,21 @@ import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
+const cliPackagePath = path.resolve(__dirname, '../../../package.json');
 
 export const saveCliMetadata = async (dir, dataAnswers) => {
     const filePath = path.join(dir, '.cli-metadata.json');
 
-    const cliPkg = JSON.parse(
-        await readFile(path.join(__dirname, '../../package.json'), 'utf-8')
-    );
+    let cliPkg;
+
+    try {
+        const file = await readFile(cliPackagePath, { encoding: 'utf-8' });
+        cliPkg = JSON.parse(file);
+    } catch (err) {
+        throw new Error(
+            `Não foi possível ler o package.json da CLI: ${err.message}`
+        );
+    }
 
     const metadata = {
         name_project: dataAnswers.safeName,
