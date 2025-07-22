@@ -7,6 +7,7 @@ import {
     createStructureMvc,
     createStructureREST,
 } from '../core/index.js';
+import { finishMessage } from './finishMessage.js';
 
 export const mergeAnswers = async (options) => {
     const name = await askProjectName(options.name);
@@ -34,7 +35,7 @@ export const mergeAnswers = async (options) => {
     const success = await handler(answers);
 
     if (success) {
-        console.log(chalk.green('✅ Estrutura criada com sucesso!'));
+        finishMessage(name);
     } else {
         console.error(chalk.red('❌ Ocorreu um erro na criação da estrutura.'));
     }

@@ -1,13 +1,14 @@
 import chalk from 'chalk';
 import { execa } from 'execa';
 import { editPackageJson } from './editPackageJson.js';
+import { runWithSpinner } from '../../utils/runWithSpinner.js';
 
 export const initializeProject = async (dir, answers) => {
     try {
-        console.log(chalk.gray(`✨ Inicializando projeto NPM em ${dir}...`));
-        await execa('npm', ['init', '-y'], { cwd: dir });
-        await editPackageJson(dir, answers.safeName);
-        console.log(chalk.green('✅ Projeto iniciado com sucesso'));
+        await runWithSpinner('Inicializando projeto com npm init', async () => {
+            await execa('npm', ['init', '-y'], { cwd: dir });
+            await editPackageJson(dir, answers.safeName);
+        });
     } catch (err) {
         console.error(
             chalk.red('❌ Falha ao iniciar o projeto NPM:', err.message)
@@ -24,22 +25,6 @@ export const initializeProject = async (dir, answers) => {
             console.error(
                 chalk.red(
                     '❌ Falha ao instalar o express no projeto:',
-                    err.message
-                )
-            );
-            throw err;
-        }
-    }
-
-    if (answers.use_express) {
-        try {
-            console.log(chalk.gray(`✨ Inicializando o git em ${dir}...`));
-            await execa('git', ['init'], { cwd: dir });
-            console.log(chalk.green('✅ Git instalado com sucesso'));
-        } catch (err) {
-            console.error(
-                chalk.red(
-                    '❌ Falha ao inicialzar o git no projeto:',
                     err.message
                 )
             );
