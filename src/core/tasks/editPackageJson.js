@@ -10,8 +10,8 @@ export const editPackageJson = async (dir, serverBase, name) => {
         content.description = 'Breve descrição sobre o seu projecto';
         content.type = 'module';
 
-        content.main = serverBase;
-
+        const formatServerBase = serverBase.split('/')[2];
+        content.main = formatServerBase;
         content.scripts = {
             ...(content.scripts || {}),
             dev: `nodemon src/${content.main}`,
