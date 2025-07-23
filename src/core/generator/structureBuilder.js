@@ -1,7 +1,24 @@
-import { runWithSpinner } from '../../utils/index.js';
+import fs from 'fs/promises';
+import path from 'path';
+import { errorHandler } from '../../utils/index.js';
+import chalk from 'chalk';
 
 export const structureBuilder = async (steps, context) => {
     for (const step of steps) {
-        runWithSpinner(step.label, async () => await step.action(context));
+        const resultPath = await step.action(context);
+
+        if (typeof resultPath === 'string') {
+            try {
+                const stats = await fs.stat(resultPath);
+                const size = stats.size;
+
+                const fullPath = path.relative(process.cwd(), resultPath);
+                console.log(
+                    `${chalk.green('✅ CRIAR')} ${fullPath} (${size} bytes)`
+                );
+            } catch (err) {
+                errorHandler(`Erro ao obter info de ${resultPath}`, err);
+            }
+        }
     }
 };
