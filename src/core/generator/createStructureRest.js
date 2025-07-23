@@ -96,6 +96,26 @@ export const createStructureREST = async (answers) => {
                 label: '',
                 action: async ({ paths }) => {
                     await createFromTemplate(
+                        resolvePathTemplate('rest/', '.prettier.ejs'),
+                        paths.prettierPath
+                    );
+                    return paths.prettierPath;
+                },
+            },
+            {
+                label: '',
+                action: async ({ paths }) => {
+                    await createFromTemplate(
+                        resolvePathTemplate('rest/', 'eslintConfig.ejs'),
+                        paths.eslintPath
+                    );
+                    return paths.eslintPath;
+                },
+            },
+            {
+                label: '',
+                action: async ({ paths }) => {
+                    await createFromTemplate(
                         resolvePathTemplate('rest/', '.env.ejs'),
                         paths.envPath
                     );
