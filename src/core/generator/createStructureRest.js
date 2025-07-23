@@ -40,7 +40,7 @@ export const createStructureREST = async (answers) => {
 
         const steps = [
             ...folders.map(({ name, template, fileName }) => ({
-                label: `Criando pasta ${name}`,
+                label: `Criando pasta ${name} e o arquivo ${fileName}`,
                 action: async ({ paths }) => {
                     const foldePath = paths[`${name}Path`];
                     await createIfNotExists(foldePath);
@@ -75,6 +75,33 @@ export const createStructureREST = async (answers) => {
                         resolvePathTemplate('rest/', 'README.ejs'),
                         paths.readmePath,
                         { projectName: answers.safeName }
+                    );
+                },
+            },
+            {
+                label: 'Criando arquivo .gitignore',
+                action: async ({ paths }) => {
+                    await createFromTemplate(
+                        resolvePathTemplate('rest/', '.gitignore.ejs'),
+                        paths.gitIgnorePath
+                    );
+                },
+            },
+            {
+                label: 'Criando arquivo .env',
+                action: async ({ paths }) => {
+                    await createFromTemplate(
+                        resolvePathTemplate('rest/', '.env.ejs'),
+                        paths.envPath
+                    );
+                },
+            },
+            {
+                label: 'Criando arquivo .env.exemple',
+                action: async ({ paths }) => {
+                    await createFromTemplate(
+                        resolvePathTemplate('rest/', '.envExemple.ejs'),
+                        paths.envExemplePath
                     );
                 },
             },
