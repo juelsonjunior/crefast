@@ -5,35 +5,13 @@ import { errorHandler } from '../../utils/index.js';
 
 export const initializeProject = async (dir, serverBase, answers) => {
     try {
-        await runWithSpinner('Inicializando projeto com npm init', async () => {
+        await runWithSpinner('Instalando e processando...☕', async () => {
             await execa('npm', ['init', '-y'], { cwd: dir });
+            await execa('npm', ['install', '-D', 'nodemon'], { cwd: dir });
+            await execa('npm', ['install', 'dotenv'], { cwd: dir });
             await editPackageJson(dir, serverBase, answers.safeName);
         });
     } catch (err) {
-        errorHandler('Falha ao iniciar o projeto npm', err);
+        errorHandler('Falha ao instalar e iniciar o projecto', err);
     }
-
-    try {
-        await runWithSpinner(
-            'Instalando Nodemon como Dev dependência',
-            async () => {
-                await execa('npm', ['install', '-D', 'nodemon'], { cwd: dir });
-            }
-        );
-    } catch (err) {
-        errorHandler('Falha ao instalar a dependência nodemon', err);
-    }
-
-    try {
-        await runWithSpinner(
-            'Instalando a dependência dotenv',
-            async () => {
-                await execa('npm', ['install', 'dotenv'], { cwd: dir });
-            }
-        );
-    } catch (err) {
-        errorHandler('Falha ao instalar a dependência dotenv', err);
-    }
-    
-
 };
