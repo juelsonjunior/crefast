@@ -1,4 +1,3 @@
-import chalk from 'chalk';
 import { execa } from 'execa';
 import { editPackageJson } from './editPackageJson.js';
 import { runWithSpinner } from '../../utils/runWithSpinner.js';
@@ -11,38 +10,18 @@ export const initializeProject = async (dir, serverBase, answers) => {
             await editPackageJson(dir, serverBase, answers.safeName);
         });
     } catch (err) {
-        errorHandler('Falha ao iniciar o projeto NPM', err);
+        errorHandler('Falha ao iniciar o projeto npm', err);
     }
 
-    if (answers.use_express) {
-        try {
-            console.log(chalk.gray(`✨ Instalando o express em ${dir}...`));
-            await execa('npm', ['install', 'express'], { cwd: dir });
-            console.log(chalk.green('✅ Express instalado com sucesso'));
-        } catch (err) {
-            console.error(
-                chalk.red(
-                    '❌ Falha ao instalar o express no projeto:',
-                    err.message
-                )
-            );
-            throw err;
-        }
+    try {
+        await runWithSpinner(
+            'Instalando Nodemon como Dev dependência',
+            async () => {
+                await execa('npm', ['install', '-D', 'nodemon'], { cwd: dir });
+            }
+        );
+    } catch (err) {
+        errorHandler('Falha ao instalar a dependência nodemon', err);
     }
 
-    if (answers.use_dotenv) {
-        try {
-            console.log(chalk.gray(`✨ Instalando o dotenv em ${dir}...`));
-            await execa('npm', ['install', 'dotenv'], { cwd: dir });
-            console.log(chalk.green('✅ Dotenv instalado com sucesso'));
-        } catch (err) {
-            console.error(
-                chalk.red(
-                    '❌ Falha ao instalar o dotenv no projeto:',
-                    err.message
-                )
-            );
-            throw err;
-        }
-    }
 };
