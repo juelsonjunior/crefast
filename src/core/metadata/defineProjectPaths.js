@@ -18,7 +18,7 @@ export const defineProjectPaths = (projectName) => {
     const envExemplePath = `${dir}/.env.exemple`;
     const readmePath = `${dir}/README.md`;
     const prettierPath = `${dir}/.prettierrc.json`;
-    const eslintPath = `${dir}/eslint.config`;
+    const eslintPath = `${dir}/eslint.config.js`;
 
     return {
         dir,
