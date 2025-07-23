@@ -24,4 +24,16 @@ export const initializeProject = async (dir, serverBase, answers) => {
         errorHandler('Falha ao instalar a dependência nodemon', err);
     }
 
+    try {
+        await runWithSpinner(
+            'Instalando a dependência dotenv',
+            async () => {
+                await execa('npm', ['install', 'dotenv'], { cwd: dir });
+            }
+        );
+    } catch (err) {
+        errorHandler('Falha ao instalar a dependência dotenv', err);
+    }
+    
+
 };
