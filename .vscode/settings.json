@@ -10,6 +10,8 @@
         "server.ejs": "javascript", // server
         ".env.ejs": "dotenv",
         ".envExemple.ejs": "dotenv", 
-        ".gitignore.ejs": "gitignore"
+        ".gitignore.ejs": "gitignore",
+        ".prettier.ejs": "json",
+        "eslintConfig.ejs": "javascript",
     }
 }
