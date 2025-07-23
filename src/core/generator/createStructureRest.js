@@ -92,7 +92,7 @@ export const createStructureREST = async (answers) => {
             ],
             { paths, answers }
         );
-        await initializeProject(paths.dir, answers);
+        await initializeProject(paths.dir, paths.serverPath, answers);
 
         return true;
     } catch (err) {

@@ -4,14 +4,14 @@ import { editPackageJson } from './editPackageJson.js';
 import { runWithSpinner } from '../../utils/runWithSpinner.js';
 import { errorHandler } from '../../utils/index.js';
 
-export const initializeProject = async (dir, answers) => {
+export const initializeProject = async (dir, serverBase, answers) => {
     try {
         await runWithSpinner('Inicializando projeto com npm init', async () => {
             await execa('npm', ['init', '-y'], { cwd: dir });
-            await editPackageJson(dir, answers.safeName);
+            await editPackageJson(dir, serverBase, answers.safeName);
         });
     } catch (err) {
-        errorHandler("Falha ao iniciar o projeto NPM", err)
+        errorHandler('Falha ao iniciar o projeto NPM', err);
     }
 
     if (answers.use_express) {
