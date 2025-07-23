@@ -40,7 +40,7 @@ export const createStructureREST = async (answers) => {
 
         const steps = [
             ...folders.map(({ name, template, fileName }) => ({
-                label: `Criando pasta ${name} e o arquivo ${fileName}`,
+                label: '',
                 action: async ({ paths }) => {
                     const foldePath = paths[`${name}Path`];
                     await createIfNotExists(foldePath);
@@ -48,77 +48,84 @@ export const createStructureREST = async (answers) => {
                         resolvePathTemplate(`rest/${name}`, template),
                         `${foldePath}/${fileName}`
                     );
+                    return `${foldePath}/${fileName}`;
                 },
             })),
             {
-                label: 'Criando arquivo app.js',
+                label: '',
                 action: async ({ paths }) => {
                     await createFromTemplate(
                         resolvePathTemplate('rest/', 'app.ejs'),
                         paths.appPath
                     );
+                    return paths.appPath;
                 },
             },
             {
-                label: 'Criando arquivo server.js',
+                label: '',
                 action: async ({ paths }) => {
                     await createFromTemplate(
                         resolvePathTemplate('rest/', 'server.ejs'),
                         paths.serverPath
                     );
+                    return paths.serverPath;
                 },
             },
             {
-                label: 'Criando arquivo README.md',
+                label: '',
                 action: async ({ paths }) => {
                     await createFromTemplate(
                         resolvePathTemplate('rest/', 'README.ejs'),
                         paths.readmePath,
                         { projectName: answers.safeName }
                     );
+                    return paths.readmePath;
                 },
             },
             {
-                label: 'Criando arquivo .gitignore',
+                label: '',
                 action: async ({ paths }) => {
                     await createFromTemplate(
                         resolvePathTemplate('rest/', '.gitignore.ejs'),
                         paths.gitIgnorePath
                     );
+                    return paths.gitIgnorePath;
                 },
             },
             {
-                label: 'Criando arquivo .env',
+                label: '',
                 action: async ({ paths }) => {
                     await createFromTemplate(
                         resolvePathTemplate('rest/', '.env.ejs'),
                         paths.envPath
                     );
+                    return paths.envPath;
                 },
             },
             {
-                label: 'Criando arquivo .env.exemple',
+                label: '',
                 action: async ({ paths }) => {
                     await createFromTemplate(
                         resolvePathTemplate('rest/', '.envExemple.ejs'),
                         paths.envExemplePath
                     );
+                    return paths.envExemplePath;
+                },
+            },
+            {
+                label: '',
+                action: async ({ paths, answers }) => {
+                    const metadataPath = await saveCliMetadata(
+                        paths.dir,
+                        answers
+                    );
+                    return metadataPath;
                 },
             },
         ];
 
         await structureBuilder(steps, { paths, answers });
-        await structureBuilder(
-            [
-                {
-                    label: 'Salvando metadados do projeto',
-                    action: async ({ paths, answers }) => {
-                        await saveCliMetadata(paths.dir, answers);
-                    },
-                },
-            ],
-            { paths, answers }
-        );
+        console.log();
         await initializeProject(paths.dir, paths.serverPath, answers);
 
         return true;
