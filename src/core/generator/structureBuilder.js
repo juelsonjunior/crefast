@@ -12,7 +12,7 @@ export const structureBuilder = async (steps, context) => {
                 const stats = await fs.stat(resultPath);
                 const size = stats.size;
 
-                const fullPath = path.relative(process.cwd(), resultPath);
+                const fullPath = path.relative(process.cwd(), resultPath).replace(/\\/g, '/');
                 console.log(
                     `${chalk.green('✅ CRIAR')} ${fullPath} (${size} bytes)`
                 );
