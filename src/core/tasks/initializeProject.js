@@ -9,6 +9,18 @@ export const initializeProject = async (dir, serverBase, answers) => {
             await execa('npm', ['init', '-y'], { cwd: dir });
             await execa('npm', ['install', '-D', 'nodemon'], { cwd: dir });
             await execa('npm', ['install', 'dotenv'], { cwd: dir });
+            await execa(
+                'npm',
+                [
+                    'install',
+                    '-D',
+                    '@eslint/js',
+                    'eslint',
+                    'globals',
+                    'prettier',
+                ],
+                { cwd: dir }
+            );
             await editPackageJson(dir, serverBase, answers.safeName);
         });
     } catch (err) {
