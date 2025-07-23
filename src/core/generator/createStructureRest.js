@@ -96,7 +96,7 @@ export const createStructureREST = async (answers) => {
                 label: '',
                 action: async ({ paths }) => {
                     await createFromTemplate(
-                        resolvePathTemplate('rest/', '.prettier.ejs'),
+                        resolvePathTemplate('', '.prettier.ejs'),
                         paths.prettierPath
                     );
                     return paths.prettierPath;
@@ -106,7 +106,7 @@ export const createStructureREST = async (answers) => {
                 label: '',
                 action: async ({ paths }) => {
                     await createFromTemplate(
-                        resolvePathTemplate('rest/', 'eslintConfig.ejs'),
+                        resolvePathTemplate('', 'eslintConfig.ejs'),
                         paths.eslintPath
                     );
                     return paths.eslintPath;
