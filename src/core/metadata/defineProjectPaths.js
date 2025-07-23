@@ -10,10 +10,10 @@ export const defineProjectPaths = (projectName) => {
     const routesPath = `${src}/routes`;
     const appPath = `${src}/app.js`;
     const serverPath = `${src}/server.js`;
-    const gitIgnorePath = `${src}/.gitignore`;
-    const envPath = `${src}/.env`;
-    const envExemplePath = `${src}/.env.exemple`;
-    const readmePath = `${src}/README.md`;
+    const gitIgnorePath = `${dir}/.gitignore`;
+    const envPath = `${dir}/.env`;
+    const envExemplePath = `${dir}/.env.exemple`;
+    const readmePath = `${dir}/README.md`;
 
     return {
         dir,
