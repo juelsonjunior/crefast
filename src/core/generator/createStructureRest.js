@@ -124,6 +124,7 @@ export const createStructureREST = async (answers) => {
             },
         ];
 
+        console.log();
         await structureBuilder(steps, { paths, answers });
         console.log();
         await initializeProject(paths.dir, paths.serverPath, answers);
