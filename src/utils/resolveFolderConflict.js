@@ -13,21 +13,37 @@ export const resolveFolderConflict = async (safeName, maxRetries = 3) => {
     let currentName = safeName;
     let paths = defineProjectPaths(currentName);
     let attempts = 0;
-    
+
     try {
         while (await checkIfExist(paths.dir)) {
             if (attempts > maxRetries) {
-                throw new Error('attempt_exceeded');
+                console.error(
+                    chalk.red('❌ Número máximo de tentativas atingido.')
+                );
+                return { canceled: true };
             }
 
             const action = await askConflictPrompt(currentName);
 
             if (action == 'cancel') {
-                throw new Error('canceled_by_user');
+                console.log(
+                    chalk.yellow(
+                        '⚠️ Criação de projeto cancelada pelo usuário.'
+                    )
+                );
+                return { canceled: true };
             }
 
             if (action == 'rename') {
                 const { newName } = await askNewNamePrompt();
+                if (newName == currentName) {
+                    console.log(
+                        chalk.yellow(
+                            '⚠️ Você digitou o mesmo nome. Nenhuma mudança feita.'
+                        )
+                    );
+                    continue;
+                }
                 currentName = newName;
                 paths = defineProjectPaths(currentName);
                 attempts++;
@@ -47,19 +63,7 @@ export const resolveFolderConflict = async (safeName, maxRetries = 3) => {
 
         return { safeName: currentName, paths };
     } catch (err) {
-        if (err.message == 'attempt_exceeded') {
-            console.log(
-                chalk.yellow('⚠️ Criação de projeto cancelada pelo usuário.')
-            );
-        } else if (err.message == 'canceled_by_user') {
-            console.log(
-                chalk.red(
-                    '❌ Número máximo de tentativas de renomeação atingido.'
-                )
-            );
-        } else {
-            errorHandler('Erro ao resolver conflito de pastas', err);
-        }
+        errorHandler('Erro ao resolver conflito de pastas', err);
         return { canceled: true };
     }
 };
