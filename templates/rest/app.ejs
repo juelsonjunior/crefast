@@ -4,6 +4,6 @@ import routes from './routes/baseRoute.ejs';
 const app = express();
 
 app.use(express.json());
-app.use('/api/users', routes);
+app.use('/', routes);
 
 export default app;
