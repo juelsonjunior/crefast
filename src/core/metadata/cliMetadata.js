@@ -21,6 +21,7 @@ export const saveCliMetadata = async (dir, dataAnswers) => {
         };
 
         await writeFile(filePath, JSON.stringify(metadata, null, 2));
+        return filePath;
     } catch (err) {
         errorHandler('Não foi possível ler o package.json da CLI', err);
     }
