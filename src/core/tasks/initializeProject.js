@@ -2,6 +2,7 @@ import chalk from 'chalk';
 import { execa } from 'execa';
 import { editPackageJson } from './editPackageJson.js';
 import { runWithSpinner } from '../../utils/runWithSpinner.js';
+import { errorHandler } from '../../utils/index.js';
 
 export const initializeProject = async (dir, answers) => {
     try {
@@ -10,10 +11,7 @@ export const initializeProject = async (dir, answers) => {
             await editPackageJson(dir, answers.safeName);
         });
     } catch (err) {
-        console.error(
-            chalk.red('❌ Falha ao iniciar o projeto NPM:', err.message)
-        );
-        throw err;
+        errorHandler("Falha ao iniciar o projeto NPM", err)
     }
 
     if (answers.use_express) {

@@ -1,5 +1,3 @@
-import chalk from 'chalk';
-
 import {
     askProjectName,
     askStruturePrompt,
@@ -8,35 +6,37 @@ import {
     createStructureREST,
 } from '../core/index.js';
 import { finishMessage } from './finishMessage.js';
-
+import { errorHandler } from './errorHandler.js';
 export const mergeAnswers = async (options) => {
-    const name = await askProjectName(options.name);
-    const structure = await askStruturePrompt(options.structure);
+    try {
+        const name = await askProjectName(options.name);
+        const structure = await askStruturePrompt(options.structure);
 
-    const answers = {
-        ...options,
-        name,
-        structure,
-        safeName: name,
-    };
+        const answers = {
+            ...options,
+            name,
+            structure,
+            safeName: name,
+        };
 
-    const structureHandler = {
-        rest: createStructureREST,
-        mvc: createStructureMvc,
-        modular: createStructureModular,
-    };
+        const structureHandler = {
+            rest: createStructureREST,
+            mvc: createStructureMvc,
+            modular: createStructureModular,
+        };
 
-    const handler = structureHandler[structure.toLowerCase()];
-    if (!handler) {
-        console.error(chalk.red('❌ Estrutura inválida selecionada'));
-        return;
-    }
+        const handler = structureHandler[structure.toLowerCase()];
+        if (!handler) {
+            throw new Error('Estrutura inválida selecionada');
+        }
 
-    const success = await handler(answers);
+        const success = await handler(answers);
 
-    if (success) {
+        if (!success) {
+            throw new Error('Falha durante a criação da estrutura do projeto.');
+        }
         finishMessage(name);
-    } else {
-        console.error(chalk.red('❌ Ocorreu um erro na criação da estrutura.'));
+    } catch (error) {
+        errorHandler('Erro durante a criação do projeto.', error);
     }
 };
