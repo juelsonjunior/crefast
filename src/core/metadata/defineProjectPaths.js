@@ -1,4 +1,5 @@
 export const defineProjectPaths = (projectName) => {
+    //Folders
     const dir = projectName;
     const src = `${dir}/src`;
     const configPath = `${src}/config`;
@@ -8,12 +9,16 @@ export const defineProjectPaths = (projectName) => {
     const repositoriesPath = `${src}/repositorie`;
     const servicesPath = `${src}/service`;
     const routesPath = `${src}/routes`;
+
+    //Files
     const appPath = `${src}/app.js`;
     const serverPath = `${src}/server.js`;
     const gitIgnorePath = `${dir}/.gitignore`;
     const envPath = `${dir}/.env`;
     const envExemplePath = `${dir}/.env.exemple`;
     const readmePath = `${dir}/README.md`;
+    const prettierPath = `${dir}/.prettierrc.json`;
+    const eslintPath = `${dir}/eslint.config`;
 
     return {
         dir,
@@ -30,5 +35,7 @@ export const defineProjectPaths = (projectName) => {
         envPath,
         envExemplePath,
         readmePath,
+        prettierPath,
+        eslintPath,
     };
 };
