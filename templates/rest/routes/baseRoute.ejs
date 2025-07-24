@@ -1,11 +1,11 @@
 import { Router } from 'express';
-import Controller from '../controller/baseController.js';
+import Controller from '../controllers/baseController.js';
 
 const router = Router();
 
-router.get('/index', Controller.index());
-router.post('/create', Controller.create());
-router.put('/update', Controller.update());
-router.delete('/delete', Controller.delete());
+router.get('/index', Controller.index);
+router.post('/create', Controller.create);
+router.put('/update', Controller.update);
+router.delete('/delete', Controller.delete);
 
 export default router;
