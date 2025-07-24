@@ -8,6 +8,7 @@ export const initializeProject = async (dir, serverBase, answers) => {
         await runWithSpinner('Instalando e processando...☕', async () => {
             await execa('npm', ['init', '-y'], { cwd: dir });
             await execa('npm', ['install', '-D', 'nodemon'], { cwd: dir });
+            await execa('npm', ['install', 'express'], { cwd: dir });
             await execa('npm', ['install', 'dotenv'], { cwd: dir });
             await execa(
                 'npm',
