@@ -75,7 +75,7 @@ export const createStructureREST = async (answers) => {
                 label: '',
                 action: async ({ paths }) => {
                     await createFromTemplate(
-                        resolvePathTemplate('rest/', 'README.ejs'),
+                        resolvePathTemplate('', 'README.ejs'),
                         paths.readmePath,
                         { projectName: answers.safeName }
                     );
@@ -86,7 +86,7 @@ export const createStructureREST = async (answers) => {
                 label: '',
                 action: async ({ paths }) => {
                     await createFromTemplate(
-                        resolvePathTemplate('rest/', '.gitignore.ejs'),
+                        resolvePathTemplate('', '.gitignore.ejs'),
                         paths.gitIgnorePath
                     );
                     return paths.gitIgnorePath;
@@ -116,7 +116,7 @@ export const createStructureREST = async (answers) => {
                 label: '',
                 action: async ({ paths }) => {
                     await createFromTemplate(
-                        resolvePathTemplate('rest/', '.env.ejs'),
+                        resolvePathTemplate('', '.env.ejs'),
                         paths.envPath
                     );
                     return paths.envPath;
@@ -126,7 +126,7 @@ export const createStructureREST = async (answers) => {
                 label: '',
                 action: async ({ paths }) => {
                     await createFromTemplate(
-                        resolvePathTemplate('rest/', '.envExemple.ejs'),
+                        resolvePathTemplate('', '.envExemple.ejs'),
                         paths.envExemplePath
                     );
                     return paths.envExemplePath;
