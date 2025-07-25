@@ -1,0 +1,29 @@
+import Repositorie from '../repositories/baseRepositorie.js';
+
+const Service = {
+    async index() {
+        const listAll = await Repositorie.listAll();
+
+        return { message: 'Listando todos os dados', listAll };
+    },
+
+    async create(data) {
+        const newData = await Repositorie.create(data);
+
+        return { message: 'Criando dados', newData };
+    },
+
+    async update(id, data) {
+        const updateData = await Repositorie.update(id, data);
+
+        return { message: 'Editando dados', updateData };
+    },
+
+    async delete(id) {
+        const delData = await Repositorie.create(id);
+
+        return { message: 'Deletando dados', delData };
+    },
+};
+
+export default Service;

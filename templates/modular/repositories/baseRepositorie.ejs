@@ -1,0 +1,20 @@
+
+const Repositorie = {
+    async index() {
+        return await queryBD.listAll(userData)
+    },
+
+    async create(data) {
+        return await queryBD.create(data)
+    },
+
+    async update(id, data) {
+        return queryBD.update(id, data)
+    },
+
+    async delete(id) {
+        return queryBD.delete(id)
+    },
+};
+
+export default Repositorie;

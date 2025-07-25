@@ -1,13 +1,14 @@
 {
     "files.associations": {
-        "*.ejs": "html", // padrão para views
-        "README.ejs": "markdown", // arquivos de documentação
-        "LICENSE.ejs": "plaintext", // licenças
-        "*Controller.ejs": "javascript", // controllers
-        "*Route.ejs": "javascript", // rotas
-        "*Service.ejs": "javascript", // serviços
-        "app.ejs": "javascript", // app Express
-        "server.ejs": "javascript", // server
+        "*.ejs": "html", 
+        "README.ejs": "markdown",
+        "LICENSE.ejs": "plaintext", 
+        "*Controller.ejs": "javascript", 
+        "*Route.ejs": "javascript", 
+        "*Repositorie.ejs": "javascript",
+        "*Service.ejs": "javascript", 
+        "app.ejs": "javascript", 
+        "server.ejs": "javascript", 
         ".env.ejs": "dotenv",
         ".envExemple.ejs": "dotenv", 
         ".gitignore.ejs": "gitignore",
