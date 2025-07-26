@@ -27,4 +27,20 @@ export const initializeProject = async (dir, serverBase, answers) => {
     } catch (err) {
         errorHandler('Falha ao instalar e iniciar o projecto', err);
     }
+
+    if (answers.use_git) {
+        try {
+            await runWithSpinner('Iniciando o git e criando o commit...☕', async () => {
+                await execa('git', ['init'], { cwd: dir });
+                await execa('git', ['add', '.'], { cwd: dir });
+                await execa(
+                    'git',
+                    ['commit', '-m', 'chore: Initialize new Project'],
+                    { cwd: dir }
+                );
+            });
+        } catch (err) {
+            errorHandler('Falha ao iniciar o git no projecto', err);
+        }
+    }
 };

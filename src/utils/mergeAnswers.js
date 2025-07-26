@@ -1,5 +1,6 @@
 import {
     askProjectName,
+    gitPrompt,
     askStruturePrompt,
     createStructureModular,
     createStructureMvc,
@@ -10,11 +11,13 @@ import { errorHandler } from './errorHandler.js';
 export const mergeAnswers = async (options) => {
     try {
         const name = await askProjectName(options.name);
+        const use_git = await gitPrompt(options.use_git);
         const structure = await askStruturePrompt(options.structure);
 
         const answers = {
             ...options,
             name,
+            use_git,
             structure,
             safeName: name,
         };
