@@ -33,6 +33,11 @@ export const createStructureREST = async (answers) => {
                 fileName: 'baseController.js',
             },
             {
+                name: 'controllers',
+                template: 'bindController.ejs',
+                fileName: 'bindController.js',
+            },
+            {
                 name: 'routes',
                 template: 'baseRoute.ejs',
                 fileName: 'baseRoute.js',
