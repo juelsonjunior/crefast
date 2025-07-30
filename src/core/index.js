@@ -16,6 +16,7 @@ export { saveCliMetadata } from './metadata/cliMetadata.js';
 export { askProjectName } from './prompts/projectNamePrompt.js';
 export { askStruturePrompt } from './prompts/structurePrompt.js';
 export { gitPrompt } from './prompts/gitPrompt.js';
+export { oopPrompt } from './prompts/oopPrompt.js';
 export {
     askConflictPrompt,
     actionOverwrite,
