@@ -14,5 +14,6 @@
         ".gitignore.ejs": "gitignore",
         ".prettier.ejs": "json",
         "eslintConfig.ejs": "javascript",
-    }
+    },
+    "editor.formatOnSave": true
 }
