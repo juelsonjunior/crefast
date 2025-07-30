@@ -2,9 +2,13 @@ import inquirer from 'inquirer';
 
 export const oopPrompt = async (oopOptions) => {
     const { use_oop } = await inquirer.prompt({
-        type: 'confirm',
+        type: 'list',
         name: 'use_oop',
-        message: 'Você deseja usar orientação a objecto?',
+        message: 'Qual estilo de código você prefere?',
+        choices: [
+            { name: 'Orientado a Objetos (OOP)', value: 'oop' },
+            { name: 'Programação Funcional (FP)', value: 'fp' },
+        ],
         default: oopOptions,
         when: !oopOptions,
     });

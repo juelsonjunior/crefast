@@ -12,7 +12,7 @@ export class App {
     }
 
     routes() {
-        this.app.use('/', router.getRouter());
+        this.app.use('/', this.router.getRouter());
     }
 
     start(port) {

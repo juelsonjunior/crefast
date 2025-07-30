@@ -15,6 +15,7 @@ import { structureBuilder } from './structureBuilder.js';
 
 export const createStructureREST = async (answers) => {
     try {
+        const styleCode = answers.use_oop
         const { safeName, canceled, paths } = await resolveFolderConflict(
             answers.safeName
         );
@@ -45,7 +46,7 @@ export const createStructureREST = async (answers) => {
                     const foldePath = paths[`${name}Path`];
                     await createIfNotExists(foldePath);
                     await createFromTemplate(
-                        resolvePathTemplate(`rest/${name}`, template),
+                        resolvePathTemplate(`rest/${name}/${styleCode}`, template),
                         `${foldePath}/${fileName}`
                     );
                     return `${foldePath}/${fileName}`;
@@ -55,7 +56,7 @@ export const createStructureREST = async (answers) => {
                 label: '',
                 action: async ({ paths }) => {
                     await createFromTemplate(
-                        resolvePathTemplate('rest/', 'app.ejs'),
+                        resolvePathTemplate(`rest/${styleCode}`, 'app.ejs'),
                         paths.appPath
                     );
                     return paths.appPath;
@@ -65,7 +66,7 @@ export const createStructureREST = async (answers) => {
                 label: '',
                 action: async ({ paths }) => {
                     await createFromTemplate(
-                        resolvePathTemplate('rest/', 'server.ejs'),
+                        resolvePathTemplate(`rest/${styleCode}`, 'server.ejs'),
                         paths.serverPath
                     );
                     return paths.serverPath;
