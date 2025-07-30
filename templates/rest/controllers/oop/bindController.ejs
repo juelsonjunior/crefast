@@ -1,0 +1,17 @@
+export default class bindController {
+    constructor() {
+        this._bindMethods();
+    }
+
+    // Faz o bind de todos os métodos para manter o "this"
+    _bindMethods() {
+        const propertyNames = Object.getOwnPropertyNames(
+            Object.getPrototypeOf(this)
+        );
+        for (const name of propertyNames) {
+            if (typeof this[name] === 'function' && name !== 'constructor') {
+                this[name] = this[name].bind(this);
+            }
+        }
+    }
+}

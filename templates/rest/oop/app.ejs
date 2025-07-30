@@ -1,0 +1,23 @@
+import express from 'express';
+import baseRoutes from './routes/baseRoute.js';
+
+export class App {
+    constructor() {
+        this.app = express();
+        this.router = new baseRoutes()
+    }
+
+    middlewares() {
+        this.app.use(express.json());
+    }
+
+    routes() {
+        this.app.use('/', router.getRouter());
+    }
+
+    start(port) {
+        this.app.listen(port, () => {
+            console.log(`Servidor rodando em http://localhost:${port}/`);
+        });
+    }
+}

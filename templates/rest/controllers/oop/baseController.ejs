@@ -1,0 +1,20 @@
+import bindController from './bindController.js';
+
+export default class Controller extends bindController {
+    
+    async index(req, res) {
+        res.status(200).json('INDEX');
+    }
+
+    async create(req, res) {
+        res.status(200).json('CRIADO');
+    }
+
+    async update(req, res) {
+        res.status(200).json('EDITADO');
+    }
+
+    async delete(req, res) {
+        res.status(200).json('DELETADO');
+    }
+}

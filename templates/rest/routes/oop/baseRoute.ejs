@@ -1,0 +1,21 @@
+import { Router } from 'express';
+import Controller from '../controllers/oop/baseController.js';
+
+export default class baseRoutes {
+    constructor() {
+        this.router = Router();
+        this.controller = new Controller();
+        this._initRoutes()
+    }
+
+    _initRoutes() {
+        this.router.get('/index', this.controller.index);
+        this.router.post('/create', this.controller.create);
+        this.router.put('/update', this.controller.update);
+        this.router.delete('/delete', this.controller.delete);
+    }
+
+    getRouter() {
+        return this.router;
+    }
+}
