@@ -1,7 +1,7 @@
 import express from 'express';
 import baseRoutes from './routes/baseRoute.js';
 
-export class App {
+export default class App {
     constructor() {
         this.app = express();
         this.router = new baseRoutes()
