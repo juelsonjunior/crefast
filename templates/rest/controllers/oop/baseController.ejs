@@ -2,6 +2,10 @@ import bindController from './bindController.js';
 
 export default class Controller extends bindController {
     
+    constructor(){
+        super()
+    }
+    
     async index(req, res) {
         res.status(200).json('INDEX');
     }
