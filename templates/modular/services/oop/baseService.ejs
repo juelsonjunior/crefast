@@ -1,0 +1,33 @@
+
+
+export default class Service{
+
+    contructor(repositorie){
+        this.repositorie = repositorie
+    }
+
+    async index() {
+        const listAll = await this.repositorie.listAll();
+
+        return { message: 'Listando todos os dados', listAll };
+    }
+
+    async create(data) {
+        const newData = await this.repositorie.create(data);
+
+        return { message: 'Criando dados', newData };
+    }
+
+    async update(id, data) {
+        const updateData = await this.repositorie.update(id, data);
+
+        return { message: 'Editando dados', updateData };
+    }
+
+    async delete(id) {
+        const delData = await this.repositorie.create(id);
+
+        return { message: 'Deletando dados', delData };
+    }
+};
+

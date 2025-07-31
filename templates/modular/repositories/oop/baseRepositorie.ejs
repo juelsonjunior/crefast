@@ -1,0 +1,22 @@
+export default class Repositorie {
+
+    constructor(model) {
+        this.model = model;
+    }
+    
+    async index() {
+        return await this.model.listAll(userData);
+    }
+
+    async create(data) {
+        return await this.model.create(data);
+    }
+
+    async update(id, data) {
+        return this.model.update(id, data);
+    }
+
+    async delete(id) {
+        return this.model.delete(id);
+    }
+}
