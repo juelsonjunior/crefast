@@ -1,9 +1,9 @@
-
+import repositorie from '../repositories/baseRepositorie.js'
 
 export default class Service{
 
-    contructor(repositorie){
-        this.repositorie = repositorie
+    contructor(){
+        this.repositorie = new repositorie()
     }
 
     async index() {
