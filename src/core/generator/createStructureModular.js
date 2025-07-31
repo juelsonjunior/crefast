@@ -15,6 +15,7 @@ import { structureBuilder } from './structureBuilder.js';
 
 export const createStructureModular = async (answers) => {
     try {
+        const styleCode = answers.use_oop
         const { safeName, canceled, paths } = await resolveFolderConflict(
             answers.safeName
         );
@@ -30,6 +31,11 @@ export const createStructureModular = async (answers) => {
                 name: 'controllers',
                 template: 'baseController.ejs',
                 fileName: 'baseController.js',
+            },
+            {
+                name: 'controllers',
+                template: 'bindController.ejs',
+                fileName: 'bindController.js',
             },
             {
                 name: 'repositories',
@@ -55,7 +61,7 @@ export const createStructureModular = async (answers) => {
                     const foldePath = paths[`${name}Path`];
                     await createIfNotExists(foldePath);
                     await createFromTemplate(
-                        resolvePathTemplate(`modular/${name}`, template),
+                        resolvePathTemplate(`modular/${name}/${styleCode}`, template),
                         `${foldePath}/${fileName}`
                     );
                     return `${foldePath}/${fileName}`;
@@ -65,7 +71,7 @@ export const createStructureModular = async (answers) => {
                 label: '',
                 action: async ({ paths }) => {
                     await createFromTemplate(
-                        resolvePathTemplate('modular/', 'app.ejs'),
+                        resolvePathTemplate(`modular/${styleCode}`, 'app.ejs'),
                         paths.appPath
                     );
                     return paths.appPath;
@@ -75,7 +81,7 @@ export const createStructureModular = async (answers) => {
                 label: '',
                 action: async ({ paths }) => {
                     await createFromTemplate(
-                        resolvePathTemplate('modular/', 'server.ejs'),
+                        resolvePathTemplate(`modular/${styleCode}`, 'server.ejs'),
                         paths.serverPath
                     );
                     return paths.serverPath;
