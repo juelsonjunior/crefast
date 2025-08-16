@@ -8,7 +8,6 @@
 
 - 📁 Geração automática de pastas e arquivos padrão (`controllers`, `routes`, `models`, `views`, etc.)
 - 📦 Inicialização automática com `npm init`
-- 🚀 Instalação opcional de dependências como `express` e `dotenv`
 - 🌱 Suporte a Git (com ou sem inicialização)
 - 🧠 Sistema de resolução de conflitos com prompt interativo (renomear, sobrescrever ou cancelar)
 - 📝 Geração de metadados do projeto (`.cli-metadata.json`)
@@ -48,17 +47,9 @@ npx nodegen create
 
 ---
 
-## 🏷️ Badges
-
-<!-- Adicione badges conforme desejar, exemplo: -->
-![npm version](https://img.shields.io/npm/v/nodegen)
-![license](https://img.shields.io/github/license/seuusuario/nodegen)
-
----
-
 ## 👨‍💻 Autor
 
-Desenvolvido por **Juelson Júnior** – apaixonado por back-end e automações com Node.js.
+Desenvolvido por **Juelson Júnior** – apaixonado por tecnologia.
 
 ---
 
