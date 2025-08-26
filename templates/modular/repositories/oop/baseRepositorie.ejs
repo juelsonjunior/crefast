@@ -1,22 +1,27 @@
 export default class Repositorie {
-
-    constructor(model) {
-        this.model = model;
+    constructor() {
+        this.users = [
+            { name: 'usuario1', email: 'usuario@gmail.com' },
+            { name: 'usuario2', email: 'usuario2@gmail.com' },
+        ];
     }
-    
+
     async index() {
-        return await this.model.listAll();
+        return this.users;
     }
 
     async create(data) {
-        return await this.model.create(data);
+        this.users.push(data);
+        return data;
     }
 
     async update(id, data) {
-        return this.model.update(id, data);
+        this.users[id] = { ...this.users[id], ...data };
+        return this.users[id];
     }
 
     async delete(id) {
-        return this.model.delete(id);
+        const removed = this.users.splice(id, 1);
+        return removed;
     }
 }
