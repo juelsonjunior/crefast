@@ -3,7 +3,7 @@ import service from '../service/baseService.js';
 
 export default class Controller extends bindController {
     constructor() {
-        super()
+        super();
         this.service = new service();
     }
 
@@ -11,14 +11,18 @@ export default class Controller extends bindController {
         try {
             const result = await this.service.index();
             res.status(200).json(result);
-        } catch (error) {}
+        } catch (err) {
+            console.log(err);
+            res.status(500).json({ message: 'Erro interno do servidor' });
+        }
     }
 
     async create(req, res) {
         try {
             const result = await this.service.create(req.body);
             res.status(201).json(result);
-        } catch (error) {
+        } catch (err) {
+            console.log(err);
             res.status(500).json({ message: 'Erro interno do servidor' });
         }
     }
@@ -27,7 +31,8 @@ export default class Controller extends bindController {
         try {
             const result = await this.service.update(req.params.id, req.body);
             res.status(200).json(result);
-        } catch (error) {
+        } catch (err) {
+            console.log(err);
             res.status(500).json({ message: 'Erro interno do servidor' });
         }
     }
@@ -36,7 +41,8 @@ export default class Controller extends bindController {
         try {
             const result = await this.service.update(req.params.id);
             res.status(200).json(result);
-        } catch (error) {
+        } catch (err) {
+            console.log(err);
             res.status(500).json({ message: 'Erro interno do servidor' });
         }
     }
