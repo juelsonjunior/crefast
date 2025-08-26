@@ -6,7 +6,7 @@
 
 ## ⚙️ Funcionalidades
 
-- 📁 Geração automática de pastas e arquivos padrão (`controllers`, `routes`, `models`, `views`, etc.)
+- 📁 Geração automática de pastas e arquivos padrão (`controllers`, `routes`, `repositorie`, `service`, etc.)
 - 📦 Inicialização automática com `npm init`
 - 🌱 Suporte a Git (com ou sem inicialização)
 - 🧠 Sistema de resolução de conflitos com prompt interativo (renomear, sobrescrever ou cancelar)
