@@ -5,6 +5,9 @@ export default class App {
     constructor() {
         this.app = express();
         this.router = new baseRoutes()
+
+        this.middlewares()
+        this.routes()
     }
 
     middlewares() {
