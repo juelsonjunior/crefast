@@ -1,15 +1,15 @@
-import repositorie from '../repositories/baseRepositorie.js'
+import repositorie from '../repositorie/baseRepositorie.js'
 
 export default class Service{
 
-    contructor(){
+    constructor(){
         this.repositorie = new repositorie()
     }
 
     async index() {
-        const listAll = await this.repositorie.listAll();
+        const data = await this.repositorie.index();
 
-        return { message: 'Listando todos os dados', listAll };
+        return { message: 'Listando todos os dados', data };
     }
 
     async create(data) {
