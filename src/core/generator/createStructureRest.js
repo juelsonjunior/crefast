@@ -15,7 +15,7 @@ import { structureBuilder } from './structureBuilder.js';
 
 export const createStructureREST = async (answers) => {
     try {
-        const styleCode = answers.use_oop
+        const styleCode = answers.use_oop;
         const { safeName, canceled, paths } = await resolveFolderConflict(
             answers.safeName
         );
@@ -32,11 +32,16 @@ export const createStructureREST = async (answers) => {
                 template: 'baseController.ejs',
                 fileName: 'baseController.js',
             },
-            {
-                name: 'controllers',
-                template: 'bindController.ejs',
-                fileName: 'bindController.js',
-            },
+            ...(styleCode == 'oop'
+                ? [
+                      {
+                          name: 'controllers',
+                          template: 'bindController.ejs',
+                          fileName: 'bindController.js',
+                      },
+                  ]
+                : []),
+
             {
                 name: 'routes',
                 template: 'baseRoute.ejs',
@@ -51,7 +56,10 @@ export const createStructureREST = async (answers) => {
                     const foldePath = paths[`${name}Path`];
                     await createIfNotExists(foldePath);
                     await createFromTemplate(
-                        resolvePathTemplate(`rest/${name}/${styleCode}`, template),
+                        resolvePathTemplate(
+                            `rest/${name}/${styleCode}`,
+                            template
+                        ),
                         `${foldePath}/${fileName}`
                     );
                     return `${foldePath}/${fileName}`;
