@@ -1,24 +1,18 @@
-import boxen from 'boxen';
 import chalk from 'chalk';
 
 export const finishMessage = (projectName) => {
     const msg = `
-        ${chalk.greenBright('🎉 Projeto criado com sucesso!')}
+    🚀 Projeto criado com sucesso: ${chalk.green(projectName)}
 
-        👉 Para começar:
+    Próximos passos:
+    1. ${chalk.gray(`📂 cd ${projectName}`)}
+    2. ${chalk.gray('🛠️  npm run dev')}
 
-        ${chalk.cyan(`cd ${projectName}`)}
-        ${chalk.cyan('npm run dev')} ${chalk.gray('// ou seu script principal')}
+                ${chalk.yellow('✨ Obrigado por usar o Nodegen CLI')}
 
-        ${chalk.bold('Boas construções 🚀')}
+    ${chalk.white(`${chalk.bold('👉 Contribua')} https://github.com/juelsonjunior/nodegen`)}
+    ${chalk.white(`${chalk.bold('💬 Ideias:')} https://www.linkedin.com/in/juelson-júnior-5b4974310`)}
     `;
 
-    const box = boxen(msg, {
-        padding: 1,
-        margin: 1,
-        borderColor: 'green',
-        borderStyle: 'round',
-    });
-
-    console.log(box);
+    console.log(msg);
 };
