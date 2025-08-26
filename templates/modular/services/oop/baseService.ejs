@@ -1,33 +1,31 @@
-import repositorie from '../repositorie/baseRepositorie.js'
+import repositorie from '../repositorie/baseRepositorie.js';
 
-export default class Service{
-
-    constructor(){
-        this.repositorie = new repositorie()
+export default class Service {
+    constructor() {
+        this.repositorie = new repositorie();
     }
 
     async index() {
-        const data = await this.repositorie.index();
-
-        return { message: 'Listando todos os dados', data };
+        return this.repositorie.index();
     }
 
     async create(data) {
-        const newData = await this.repositorie.create(data);
+        if (!data) return { error: 'Informaçõess ausentes' };
 
-        return { message: 'Criando dados', newData };
+        return this.repositorie.create(data);
     }
 
     async update(id, data) {
-        const updateData = await this.repositorie.update(id, data);
+        if (!id) return { error: 'Precisa informar o ID' };
 
-        return { message: 'Editando dados', updateData };
+        if (!data) return { error: 'Informaçõess ausentes' };
+
+        return await this.repositorie.update(id, data);
     }
 
     async delete(id) {
-        const delData = await this.repositorie.create(id);
+        if (!id) return { error: 'Precisa informar o ID' };
 
-        return { message: 'Deletando dados', delData };
+        return await this.repositorie.create(id);
     }
-};
-
+}

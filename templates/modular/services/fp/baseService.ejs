@@ -2,27 +2,27 @@ import Repositorie from '../repositorie/baseRepositorie.js';
 
 const Service = {
     async index() {
-        const listAll = await Repositorie.listAll();
-
-        return { message: 'Listando todos os dados', listAll };
+        return Repositorie.index();
     },
 
     async create(data) {
-        const newData = await Repositorie.create(data);
+        if (!data) return { error: 'Informaçõess ausentes' };
 
-        return { message: 'Criando dados', newData };
+        return Repositorie.create(data);
     },
 
     async update(id, data) {
-        const updateData = await Repositorie.update(id, data);
+        if (!id) return { error: 'Precisa informar o ID' };
 
-        return { message: 'Editando dados', updateData };
+        if (!data) return { error: 'Informaçõess ausentes' };
+
+        return await Repositorie.update(id, data);
     },
 
     async delete(id) {
-        const delData = await Repositorie.create(id);
+        if (!id) return { error: 'Precisa informar o ID' };
 
-        return { message: 'Deletando dados', delData };
+        return await Repositorie.create(id);
     },
 };
 

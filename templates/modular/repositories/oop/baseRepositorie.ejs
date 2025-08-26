@@ -1,27 +1,17 @@
 export default class Repositorie {
-    constructor() {
-        this.users = [
-            { name: 'usuario1', email: 'usuario@gmail.com' },
-            { name: 'usuario2', email: 'usuario2@gmail.com' },
-        ];
-    }
-
     async index() {
-        return this.users;
+        return ['Listando Informações'];
     }
 
     async create(data) {
-        this.users.push(data);
-        return data;
+        return { message: 'Informações criada', data };
     }
 
     async update(id, data) {
-        this.users[id] = { ...this.users[id], ...data };
-        return this.users[id];
+        return { message: `Informações ${id} atualizada`, data };
     }
 
     async delete(id) {
-        const removed = this.users.splice(id, 1);
-        return removed;
+        return { message: `Informações ${id} deletada` };
     }
 }

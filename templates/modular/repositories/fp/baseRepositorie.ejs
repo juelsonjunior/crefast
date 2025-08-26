@@ -1,19 +1,18 @@
-
 const Repositorie = {
     async index() {
-        return await queryBD.listAll()
+        return ['Listando Informações'];
     },
 
     async create(data) {
-        return await queryBD.create(data)
+        return { message: 'Informações criada', data };
     },
 
     async update(id, data) {
-        return queryBD.update(id, data)
+        return { message: `Informações ${id} atualizada`, data };
     },
 
     async delete(id) {
-        return queryBD.delete(id)
+        return { message: `Informações ${id} deletada` };
     },
 };
 
