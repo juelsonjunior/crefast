@@ -7,4 +7,5 @@ export const createIfNotExists = async (path) => {
     } catch {
         await mkdir(path, { recursive: true });
     }
+    
 };
