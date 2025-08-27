@@ -10,6 +10,10 @@ const config = {
     '^.+\\.m?js$': 'babel-jest',
   },
 
+  transformIgnorePatterns: [
+    '/node_modules/(?!chalk).+\\.js$',
+  ],
+
   // Você pode descomentar esta seção para garantir que o Jest
   // procure por arquivos .mjs
   moduleFileExtensions: [
