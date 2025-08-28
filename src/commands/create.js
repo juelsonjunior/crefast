@@ -6,12 +6,9 @@ export const createCommand = (program) => {
         .command('create [project_name]')
         .description(`📦 ${t('cli.create.description')}`)
         .option('-n, --name <name>', t('cli.name.project'))
-        .option(
-            '-t, --structure <type>',
-            `${t('cli.structure')} (REST, MODULAR)`
-        )
+        .option('-s, --style <type>', `${t('cli.oop.choice')}`)
+        .option('-t, --structure <type>', `${t('cli.structure')}`)
         .option('--no-git', t('cli.git.init'))
-        .option('--no-dependences', t('cli.dependences'))
         .action(async (projectName, options) => {
             const name = options.name || projectName;
             if (name) {
