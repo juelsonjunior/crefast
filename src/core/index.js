@@ -1,6 +1,5 @@
 //Imports Generator
 export { createStructureModular } from './generator/createStructureModular.js';
-export { createStructureMvc } from './generator/createStructureMvc.js';
 export { createStructureREST } from './generator/createStructureRest.js';
 
 //Imports Tasks

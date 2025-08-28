@@ -4,7 +4,6 @@ import {
     oopPrompt,
     askStruturePrompt,
     createStructureModular,
-    createStructureMvc,
     createStructureREST,
 } from '../core/index.js';
 import { finishMessage } from './finishMessage.js';
@@ -27,7 +26,6 @@ export const mergeAnswers = async (options) => {
 
         const structureHandler = {
             rest: createStructureREST,
-            mvc: createStructureMvc,
             modular: createStructureModular,
         };
 
