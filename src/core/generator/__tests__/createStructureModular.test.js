@@ -28,8 +28,13 @@ jest.mock('../structureBuilder.js', () => ({
 }));
 
 describe('createStructureModular', () => {
-    afterEach(() => {
-        jest.clearAllMocks(); // Limpa os mocks após cada teste
+    let consoleSpy;
+    beforeAll(() => {
+        consoleSpy = jest.spyOn(console, 'log').mockImplementation(() => {});
+    });
+
+    afterAll(() => {
+        consoleSpy.mockRestore();
     });
 
     // TESTE 1: Cenário OOP (já existente, com pequena correção)

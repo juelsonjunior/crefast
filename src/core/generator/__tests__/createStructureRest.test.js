@@ -24,9 +24,13 @@ jest.mock('../structureBuilder.js', () => ({
 }));
 
 describe('createStructureREST', () => {
-    // Reset mocks antes de cada teste
-    beforeEach(() => {
-        jest.clearAllMocks();
+   let consoleSpy;
+    beforeAll(() => {
+        consoleSpy = jest.spyOn(console, 'log').mockImplementation(() => {});
+    });
+
+    afterAll(() => {
+        consoleSpy.mockRestore();
     });
 
     // Cenário 1: Sucesso (caminho completo)
@@ -53,8 +57,6 @@ describe('createStructureREST', () => {
 
         const answers = { safeName: 'meu-projeto', use_oop: 'no-oop' };
 
-        // Mockamos o structureBuilder para executar as ações dos steps.
-        // O mock deve receber os steps e um contexto, e chamar cada ação.
         generator.structureBuilder.mockImplementation(async (steps, context) => {
             for (const step of steps) {
                 await step.action(context);
@@ -69,14 +71,11 @@ describe('createStructureREST', () => {
         expect(generator.structureBuilder).toHaveBeenCalled();
         expect(coreIndex.initializeProject).toHaveBeenCalled();
 
-        // Agora, verifique se as funções dentro das actions foram chamadas
-        // (Isso é o que vai cobrir as linhas que faltam)
         expect(coreIndex.createIfNotExists).toHaveBeenCalledTimes(2); // Para 'controllers' e 'routes'
         expect(utilsIndex.createFromTemplate).toHaveBeenCalledTimes(10); // Conte o número de templates criados
         expect(utilsIndex.resolvePathTemplate).toHaveBeenCalled();
         expect(coreIndex.saveCliMetadata).toHaveBeenCalled();
 
-        // Se quiser, verifique as chamadas exatas
         expect(utilsIndex.createFromTemplate).toHaveBeenCalledWith(
             'mocked/rest/controllers/no-oop/baseController.ejs',
             '/fake/path/controllers/baseController.js'
