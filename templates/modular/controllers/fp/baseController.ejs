@@ -33,7 +33,7 @@ const Controller = {
 
     async delete(req, res) {
         try {
-            const result = await Service.update(req.params.id);
+            const result = await Service.delete(req.params.id);
             res.status(200).json(result);
         } catch (err) {
             console.log(err);

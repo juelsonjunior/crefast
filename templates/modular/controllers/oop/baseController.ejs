@@ -39,7 +39,7 @@ export default class Controller extends bindController {
 
     async delete(req, res) {
         try {
-            const result = await this.service.update(req.params.id);
+            const result = await this.service.delete(req.params.id);
             res.status(200).json(result);
         } catch (err) {
             console.log(err);
