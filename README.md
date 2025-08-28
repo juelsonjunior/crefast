@@ -18,8 +18,7 @@
 ## 📦 Estruturas Suportadas
 
 - **REST:** Organização mínima para APIs simples
-- **MVC:** Separação clara entre modelo, visão e controle
-- **MODULAR:** Arquitetura baseada em domínio para projetos escaláveis
+- **MODULAR:** Arquitetura baseada em controllers repositorie e service para projetos escaláveis
 
 ---
 
@@ -43,6 +42,12 @@ npm install -g nodegen
 
 ```bash
 npx nodegen create
+```
+
+## 🧮 Rodar testes
+
+```bash
+npm test
 ```
 
 ---
