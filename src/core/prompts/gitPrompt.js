@@ -2,8 +2,8 @@ import inquirer from 'inquirer';
 import { t } from '../../i18n/index.js';
 
 export const gitPrompt = async (gitOptions) => {
-    if (gitOptions !== undefined) {
-        return gitOptions;
+    if (gitOptions == false) {
+        return false;
     }
 
     const { use_git } = await inquirer.prompt({
