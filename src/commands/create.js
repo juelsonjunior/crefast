@@ -1,4 +1,5 @@
 import { mergeAnswers } from '../utils/index.js';
+import { t } from '../i18n/index.js';
 
 export const createCommand = (program) => {
     program
