@@ -1,7 +1,7 @@
 {
   "name": "nodegen",
   "version": "1.0.0",
-  "description": "",
+  "description": "Nodegen CLI para geração de projectos node js",
   "main": "index.js",
   "bin": {
     "nodegen": "./bin/cli.js"
