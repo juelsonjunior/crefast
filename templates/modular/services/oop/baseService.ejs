@@ -26,6 +26,6 @@ export default class Service {
     async delete(id) {
         if (!id) return { error: 'Precisa informar o ID' };
 
-        return await this.repositorie.create(id);
+        return await this.repositorie.delete(id);
     }
 }

@@ -22,7 +22,7 @@ const Service = {
     async delete(id) {
         if (!id) return { error: 'Precisa informar o ID' };
 
-        return await Repositorie.create(id);
+        return await Repositorie.delete(id);
     },
 };
 
