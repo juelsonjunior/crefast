@@ -11,6 +11,9 @@ const Controller = {
     async create(req, res) {
         try {
             const data = req.body.data;
+
+            if (!data) res.status(400).json({ error: 'Informações ausentes' });
+
             res.status(201).json({ message: 'Informações criada', data });
         } catch (err) {
             console.log(err);
@@ -22,6 +25,11 @@ const Controller = {
         try {
             const id = req.params.id;
             const data = req.body.data;
+
+            if (!id) res.status(400).json({ error: 'Precisa informar o ID' });
+
+            if (!data) res.status(400).json({ error: 'Informaçõess ausentes' });
+
             res.status(200).json({
                 message: `Informações ${id} atualizada`,
                 data,
@@ -35,6 +43,9 @@ const Controller = {
     async delete(req, res) {
         try {
             const id = req.params.id;
+
+            if (!id) res.status(400).json({ error: 'Precisa informar o ID' });
+
             res.status(200).json({ message: `Informações ${id} deletada` });
         } catch (err) {
             console.log(err);
