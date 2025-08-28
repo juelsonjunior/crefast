@@ -5,7 +5,7 @@ const router = Router();
 
 router.get('/index', Controller.index);
 router.post('/create', Controller.create);
-router.put('/update', Controller.update);
-router.delete('/delete', Controller.delete);
+router.put('/update/:id', Controller.update);
+router.delete('/delete/:id', Controller.delete);
 
 export default router;

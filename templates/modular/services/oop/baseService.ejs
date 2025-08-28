@@ -10,7 +10,7 @@ export default class Service {
     }
 
     async create(data) {
-        if (!data) return { error: 'Informaçõess ausentes' };
+        if (!data) return { error: 'Informações ausentes' };
 
         return this.repositorie.create(data);
     }
