@@ -34,8 +34,8 @@
   "install.dependences": "Instalando e processando...",
   "install.git": "Inicializando git e criando commit...",
 
-  "prompt.git": "Você deseja usar Git para controle de versão? ",
-  "prompt.oop.question": "Qual estilo de programação você prefere? ",
+  "prompt.git": "Você deseja usar Git para controle de versão?",
+  "prompt.oop.question": "Qual estilo de programação você prefere?",
   "prompt.oop.choice.oop": "Orientado a Objetos",
   "prompt.oop.choice.fp": "Programação Funcional",
   "prompt.project.name": "Qual o nome do projeto:",
@@ -46,5 +46,5 @@
   "prompt.conflict.rename.question": "Digite o novo nome do projeto:",
   "prompt.conflict.overwrite": "Substituir (APAGAR a pasta)",
   "prompt.conflict.cancel": "Cancelar",
-  "prompt.structure": "Qual estrutura você deseja usar? "
+  "prompt.structure": "Qual estrutura você deseja usar?"
 }
