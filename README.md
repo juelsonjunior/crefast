@@ -1,6 +1,6 @@
 # 🧰 NodeGen – Gerador de Estrutura para Projetos Node.js
 
-**NodeGen** é uma CLI (Command Line Interface) desenvolvida em Node.js que automatiza a criação de estruturas base para aplicações backend. Com ela, você gera rapidamente projetos organizados nos padrões **REST**, **MVC** e **MODULAR**, com pastas, arquivos e dependências essenciais já configuradas.
+**NodeGen** é uma CLI (Command Line Interface) desenvolvida em Node.js que automatiza a criação de estruturas base para aplicações backend. Com ela, você gera rapidamente projetos organizados nos padrões **REST**, **MODULAR**, com pastas, arquivos e dependências essenciais já configuradas.
 
 ---
 
@@ -18,8 +18,7 @@
 ## 📦 Estruturas Suportadas
 
 - **REST:** Organização mínima para APIs simples
-- **MVC:** Separação clara entre modelo, visão e controle
-- **MODULAR:** Arquitetura baseada em domínio para projetos escaláveis
+- **MODULAR:** Arquitetura baseada em controllers repositorie e service para projetos escaláveis
 
 ---
 
@@ -43,6 +42,12 @@ npm install -g nodegen
 
 ```bash
 npx nodegen create
+```
+
+## 🧮 Rodar testes
+
+```bash
+npm test
 ```
 
 ---
