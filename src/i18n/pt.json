@@ -1,5 +1,6 @@
 {
   "cli.description": "Gerador de estrutura para projetos Node.js",
+  "cli.create.description": "Cria um novo projeto com a estrutura escolhida",
 
   "project.created.success": "Projeto criado com sucesso:",
   "project.created.thanks": "Obrigado por usar o Nodegen CLI",

@@ -1,5 +1,6 @@
 {
   "cli.description": "Structure generator for Node.js projects",
+  "cli.create.description": "📦 Create a new project with the chosen structure",
 
   "project.created.success": "Project created successfully:",
   "project.created.thanks": "Thanks for using Nodegen CLI",
