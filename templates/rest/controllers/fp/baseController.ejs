@@ -1,8 +1,7 @@
 const Controller = {
     async index(req, res) {
         try {
-            const result = await Service.index();
-            res.status(200).json(result);
+            res.status(200).json(['Listando Informações']);
         } catch (err) {
             console.log(err);
             res.status(500).json({ message: 'Erro interno do servidor' });
@@ -11,8 +10,8 @@ const Controller = {
 
     async create(req, res) {
         try {
-            const result = await Service.create(req.body);
-            res.status(201).json(result);
+            const data = req.body.data;
+            res.status(201).json({ message: 'Informações criada', data });
         } catch (err) {
             console.log(err);
             res.status(500).json({ message: 'Erro interno do servidor' });
@@ -21,8 +20,12 @@ const Controller = {
 
     async update(req, res) {
         try {
-            const result = await Service.update(req.params.id, req.body);
-            res.status(200).json(result);
+            const id = req.params.id;
+            const data = req.body.data;
+            res.status(200).json({
+                message: `Informações ${id} atualizada`,
+                data,
+            });
         } catch (err) {
             console.log(err);
             res.status(500).json({ message: 'Erro interno do servidor' });
@@ -31,8 +34,8 @@ const Controller = {
 
     async delete(req, res) {
         try {
-            const result = await Service.update(req.params.id);
-            res.status(200).json(result);
+            const id = req.params.id;
+            res.status(200).json({ message: `Informações ${id} deletada` });
         } catch (err) {
             console.log(err);
             res.status(500).json({ message: 'Erro interno do servidor' });
