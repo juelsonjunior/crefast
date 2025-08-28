@@ -44,7 +44,7 @@ describe('structureBuilder', () => {
         await structureBuilder([fakeStep], {});
 
         expect(errorHandler).toHaveBeenCalledWith(
-            'Erro ao obter info de /fake/file.js',
+            'Erro ao obter informações','/fake/file.js',
             expect.any(Error)
         );
     });

@@ -52,7 +52,7 @@ describe('saveCliMetadata', () => {
     await saveCliMetadata(fakeDir, fakeAnswers);
 
     expect(errorHandler).toHaveBeenCalledWith(
-      'Não foi possível ler o package.json da CLI',
+      'Não foi possível ler o package.json do CLI',
       expect.any(Error)
     );
   });

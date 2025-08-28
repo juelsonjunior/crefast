@@ -10,11 +10,21 @@ describe('structurePrompt', () => {
     jest.clearAllMocks();
   });
 
-  it('retorna estrutura em maiúsculas', async () => {
+  test('retorna estrutura em maiúsculas', async () => {
     inquirer.prompt.mockResolvedValue({ structure: 'mvc' });
 
     const result = await askStruturePrompt(false);
 
     expect(result).toBe('MVC');
   });
+
+  test('Retorna o valor da flag em maiúsculas sem exibir o prompt', async () => {
+    const structureOptions = 'rest';
+    const result = await askStruturePrompt(structureOptions);
+
+    // Esperamos que o prompt não seja chamado
+    expect(inquirer.prompt).not.toHaveBeenCalled();
+    // Esperamos que o valor retornado seja o mesmo que foi passado, mas em maiúsculas
+    expect(result).toBe(structureOptions.toUpperCase());
+});
 });

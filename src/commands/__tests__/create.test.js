@@ -39,9 +39,7 @@ describe('createCommand', () => {
         // Verificamos se as opções foram registradas
         const command = program.command.mock.results[0].value;
         expect(command.option).toHaveBeenCalledWith('-n, --name <name>', 'Nome do projeto');
-        expect(command.option).toHaveBeenCalledWith('-t, --structure <type>', 'Tipo de estrutura (REST, MVC, MODULAR)');
-        expect(command.option).toHaveBeenCalledWith('--no-git', 'Não inicializa um repositório Git');
-        expect(command.option).toHaveBeenCalledWith('--no-dependences', 'Não instala dependências automaticamente');
+        expect(command.option).toHaveBeenCalledWith('-t, --structure <type>', 'Tipo de estrutura (REST=rest, MODULAR=modular)');
     });
 
     // Cenário 2: Nome do projeto fornecido via argumento

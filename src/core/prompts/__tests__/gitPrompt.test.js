@@ -13,14 +13,12 @@ describe('gitPrompt', () => {
     test('Retorna true quando usuário escolhe usar git', async () => {
         inquirer.prompt.mockResolvedValue({ use_git: true });
 
-        const result = await gitPrompt(false);
+        const result = await gitPrompt(true);
 
         expect(inquirer.prompt).toHaveBeenCalledWith({
             type: 'confirm',
             name: 'use_git',
-            message: 'Você deseja usar o Git para controle de versão?',
-            default: false,
-            when: true, // pois passamos gitOptions=false
+            message: 'Você deseja usar Git para controle de versão?',
         });
 
         expect(result).toBe(true);
@@ -29,7 +27,7 @@ describe('gitPrompt', () => {
     test("Retorna false quando usuário não quer usar git", async () => {
         inquirer.prompt.mockResolvedValue({use_git: false})
 
-        const result = await gitPrompt(true)
+        const result = await gitPrompt(false)
         expect(result).toBe(false)
     })
 });

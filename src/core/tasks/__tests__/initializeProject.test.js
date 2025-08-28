@@ -96,7 +96,7 @@ describe('initializeProject', () => {
         await initializeProject(mockDir, mockServerBase, mockAnswers);
 
         expect(errorHandler).toHaveBeenCalledWith(
-            'Falha ao instalar e iniciar o projecto',
+            'Falha ao instalar e iniciar o projeto',
             expect.any(Error)
         );
     });
@@ -111,7 +111,7 @@ describe('initializeProject', () => {
         await initializeProject(mockDir, mockServerBase, mockAnswers);
 
         expect(errorHandler).toHaveBeenCalledWith(
-            'Falha ao iniciar o git no projecto',
+            'Falha ao inicializar o git no projeto',
             expect.any(Error)
         );
     });

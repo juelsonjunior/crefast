@@ -18,28 +18,28 @@ describe('askPromptName', () => {
         expect(result).toBe('meu-projeto-123-');
     });
 
-    test('usa valor default se passado', async () => {
-        inquirer.prompt.mockResolvedValue({ project_name: 'teste' });
-
-        await askProjectName('defaultName');
-
-        expect(inquirer.prompt).toHaveBeenCalledWith([
-            expect.objectContaining({ default: 'defaultName' }),
-        ]);
+    test('Não exibe prompt quando um nome é passado via flag', async () => {
+        const result = await askProjectName('defaultName');
+        expect(inquirer.prompt).not.toHaveBeenCalled();
+        expect(result).toBe('defaultname');
     });
 
     test('exibe erro para nome de projeto vazio', async () => {
-         inquirer.prompt.mockImplementation((config) => {
+        inquirer.prompt.mockImplementation((config) => {
             // Guarda a função de validação passada para o prompt
             const validationFn = config[0].validate;
-            
+
             // Testa os dois cenários da validação diretamente
             // Cenário 1: Entrada inválida (string vazia ou apenas espaços)
             const emptyInputResult = validationFn('');
-            expect(emptyInputResult).toBe('O nome do projeto não pode estar vazio.');
+            expect(emptyInputResult).toBe(
+                'O nome do projeto não pode estar vazio.'
+            );
 
             const spaceInputResult = validationFn('   ');
-            expect(spaceInputResult).toBe('O nome do projeto não pode estar vazio.');
+            expect(spaceInputResult).toBe(
+                'O nome do projeto não pode estar vazio.'
+            );
 
             // Cenário 2: Entrada válida
             const validResult = validationFn('meu-projeto');
