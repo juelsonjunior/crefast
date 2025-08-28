@@ -13,7 +13,7 @@
   "project.created.thanks": "Obrigado por usar Nodegen CLI",
   "project.created.fork": "Contribua",
   "project.created.networking": "Ideias:",
-  "project.created.folders.msg": "CRIADO",
+  "project.created.folders.msg": "CRIAR",
 
   "error.structure.invalid": "Estrutura selecionada inválida",
   "error.structure.rest": "Erro ao criar a estrutura REST",

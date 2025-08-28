@@ -13,7 +13,7 @@
   "project.created.thanks": "Thanks for using Nodegen CLI",
   "project.created.fork": "Contribute",
   "project.created.networking": "Ideas:",
-  "project.created.folders.msg": "CREATED",
+  "project.created.folders.msg": "CREATE",
 
   "error.structure.invalid": "Invalid structure selected",
   "error.structure.rest": "Error creating REST structure",
