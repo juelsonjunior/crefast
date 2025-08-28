@@ -2,7 +2,6 @@ import inquirer from 'inquirer';
 import { t } from '../../i18n/index.js';
 
 export const oopPrompt = async (oopOptions) => {
-    console.log('oopPrompt recebendo:', oopOptions); 
     if (oopOptions) {
         return oopOptions;
     }
