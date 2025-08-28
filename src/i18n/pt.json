@@ -6,7 +6,7 @@
   "cli.structure": "Tipo de estrutura (REST=rest, MODULAR=modular)",
   "cli.dependences": "Não instalar dependências automaticamente",
   "cli.oop.choice": "Escolher estilo de codificação (ORIENTADO-OBJECTO=oop, PROGRAMAÇÃO-FUNCIONAL=fp)",
-  "cli.language": "Idioma da (pt ou en)",
+  "cli.language": "Idioma da CLI (pt ou en)",
 
   "project.created.success": "Projeto criado com sucesso:",
   "project.created.steps": "Próximos passos:",
