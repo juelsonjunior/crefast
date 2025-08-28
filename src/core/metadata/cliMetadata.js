@@ -1,6 +1,7 @@
 import { writeFile, readFile } from 'fs/promises';
 import { errorHandler, resolvePathPackage } from '../../utils/index.js';
 import path from 'path';
+import { t } from '../../i18n/index.js';
 
 export const saveCliMetadata = async (dir, dataAnswers) => {
     const cliPackagePath = resolvePathPackage();
@@ -23,6 +24,6 @@ export const saveCliMetadata = async (dir, dataAnswers) => {
         await writeFile(filePath, JSON.stringify(metadata, null, 2));
         return filePath;
     } catch (err) {
-        errorHandler('Não foi possível ler o package.json da CLI', err);
+        errorHandler(t('error.metadata.read'), err);
     }
 };

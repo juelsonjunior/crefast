@@ -12,6 +12,7 @@ import {
     resolveFolderConflict,
 } from '../../utils/index.js';
 import { structureBuilder } from './structureBuilder.js';
+import { t } from '../../i18n/index.js';
 
 export const createStructureModular = async (answers) => {
     try {
@@ -167,7 +168,7 @@ export const createStructureModular = async (answers) => {
 
         return true;
     } catch (err) {
-        errorHandler('Erro ao criar a estrutura MODULAR', err);
+        errorHandler(t('error.structure.modular'), err);
         return false;
     }
 };

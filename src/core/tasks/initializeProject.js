@@ -2,10 +2,11 @@ import { execa } from 'execa';
 import { editPackageJson } from './editPackageJson.js';
 import { runWithSpinner } from '../../utils/runWithSpinner.js';
 import { errorHandler } from '../../utils/index.js';
+import { t } from '../../i18n/index.js';
 
 export const initializeProject = async (dir, serverBase, answers) => {
     try {
-        await runWithSpinner('Instalando e processando...☕', async () => {
+        await runWithSpinner(`${t('install.dependences')} ☕`, async () => {
             await execa('npm', ['init', '-y'], { cwd: dir });
             await execa('npm', ['install', '-D', 'nodemon'], { cwd: dir });
             await execa('npm', ['install', 'express'], { cwd: dir });
@@ -25,12 +26,12 @@ export const initializeProject = async (dir, serverBase, answers) => {
             await editPackageJson(dir, serverBase, answers.safeName);
         });
     } catch (err) {
-        errorHandler('Falha ao instalar e iniciar o projecto', err);
+        errorHandler(t('error.catch.dependence'), err);
     }
 
     if (answers.use_git) {
         try {
-            await runWithSpinner('Iniciando o git e criando o commit...☕', async () => {
+            await runWithSpinner(`${t('install.git')} ☕`, async () => {
                 await execa('git', ['init'], { cwd: dir });
                 await execa('git', ['add', '.'], { cwd: dir });
                 await execa(
@@ -40,7 +41,7 @@ export const initializeProject = async (dir, serverBase, answers) => {
                 );
             });
         } catch (err) {
-            errorHandler('Falha ao iniciar o git no projecto', err);
+            errorHandler(t('error.catch.git'), err);
         }
     }
 };

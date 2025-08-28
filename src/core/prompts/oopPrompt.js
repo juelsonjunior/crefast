@@ -1,13 +1,14 @@
 import inquirer from 'inquirer';
+import { t } from '../../i18n/index.js';
 
 export const oopPrompt = async (oopOptions) => {
     const { use_oop } = await inquirer.prompt({
         type: 'list',
         name: 'use_oop',
-        message: 'Qual estilo de código você prefere?',
+        message: t('prompt.oop.question'),
         choices: [
-            { name: 'Orientado a Objetos (OOP)', value: 'oop' },
-            { name: 'Programação Funcional (FP)', value: 'fp' },
+            { name: t('prompt.oop.choice.oop') + ' (OOP)', value: 'oop' },
+            { name: t('prompt.oop.choice.fp') + ' (FP)', value: 'fp' },
         ],
         default: oopOptions,
         when: !oopOptions,

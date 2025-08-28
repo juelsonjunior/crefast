@@ -1,17 +1,18 @@
 import inquirer from 'inquirer';
+import { t } from '../../i18n/index.js';
 
 export const askProjectName = async (nameOption) => {
     const { project_name } = await inquirer.prompt([
         {
             type: 'input',
             name: 'project_name',
-            message: 'Qual é o nome do projeto: ',
+            message: t('prompt.project.name'),
             default: nameOption,
             when: !nameOption,
             validate(input) {
                 return input.trim()
                     ? true
-                    : 'O nome do projeto não pode estar vazio.';
+                    : t('prompt.project.empty');
             },
         },
     ]);

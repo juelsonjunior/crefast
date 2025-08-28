@@ -12,6 +12,7 @@ import {
     resolveFolderConflict,
 } from '../../utils/index.js';
 import { structureBuilder } from './structureBuilder.js';
+import { t } from '../../i18n/index.js';
 
 export const createStructureREST = async (answers) => {
     try {
@@ -165,7 +166,7 @@ export const createStructureREST = async (answers) => {
 
         return true;
     } catch (err) {
-        errorHandler('Erro ao criar a estrutura REST', err);
+        errorHandler(t('error.structure.rest'), err);
         return false;
     }
 };

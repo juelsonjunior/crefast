@@ -1,6 +1,7 @@
 import { readFile, writeFile } from 'fs/promises';
 import path from 'path';
 import { errorHandler } from '../../utils/index.js';
+import { t } from '../../i18n/index.js';
 
 export const editPackageJson = async (dir, serverBase, name) => {
     try {
@@ -19,6 +20,6 @@ export const editPackageJson = async (dir, serverBase, name) => {
 
         await writeFile(packageJson, JSON.stringify(content, null, 2));
     } catch (err) {
-        errorHandler('Falha ao editar o arquivo package.json', err);
+        errorHandler(t('error.catch.handler.package'), err);
     }
 };

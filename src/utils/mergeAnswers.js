@@ -8,6 +8,7 @@ import {
 } from '../core/index.js';
 import { finishMessage } from './finishMessage.js';
 import { errorHandler } from './errorHandler.js';
+import { t } from '../i18n/index.js';
 export const mergeAnswers = async (options) => {
     try {
         const name = await askProjectName(options.name);
@@ -31,16 +32,16 @@ export const mergeAnswers = async (options) => {
 
         const handler = structureHandler[structure.toLowerCase()];
         if (!handler) {
-            throw new Error('Estrutura inválida selecionada');
+            throw new Error(t('error.structure.invalid'));
         }
 
         const success = await handler(answers);
 
         if (!success) {
-            throw new Error('Falha durante a criação da estrutura do projeto.');
+            throw new Error(t('error.creation.failed'));
         }
         finishMessage(name);
     } catch (error) {
-        errorHandler('Erro durante a criação do projeto.', error);
+        errorHandler(t('error.catch.handler'), error);
     }
 };

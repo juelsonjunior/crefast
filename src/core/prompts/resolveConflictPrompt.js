@@ -1,16 +1,20 @@
 import fs from 'fs/promises';
 import inquirer from 'inquirer';
+import { t } from '../../i18n/index.js';
 
 export const askConflictPrompt = async (projectName) => {
     const { action } = await inquirer.prompt([
         {
             type: 'list',
             name: 'action',
-            message: `O diretório "${projectName}" já existe o que quer fazer?`,
+            message: `${t('prompt.conflict.question1')} ${projectName} ${t('prompt.conflict.question2')}`,
             choices: [
-                { name: '🔁 Renomear projeto', value: 'rename' },
-                { name: '🧨 Sobrecrever (APAGAR pasta)', value: 'overwrite' },
-                { name: '❌ Cancelar', value: 'cancel' },
+                { name: `🔁 ${t('Rename project')}`, value: 'rename' },
+                {
+                    name: `🧨 ${t('prompt.conflict.overwrite')}`,
+                    value: 'overwrite',
+                },
+                { name: `❌ ${t('prompt.conflict.cancel')}`, value: 'cancel' },
             ],
         },
     ]);
@@ -26,11 +30,11 @@ export const askNewNamePrompt = async () => {
         {
             type: 'input',
             name: 'newName',
-            message: 'Digite o novo nome do projeto:',
+            message: t('prompt.conflict.rename.question'),
             validate(input) {
                 return input.trim()
                     ? true
-                    : 'O nome do projeto não pode estar vazio.';
+                    : t('prompt.project.empty');
             },
         },
     ]);

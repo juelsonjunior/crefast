@@ -8,6 +8,7 @@ import {
 } from '../core/index.js';
 import { runWithSpinner } from './runWithSpinner.js';
 import { errorHandler } from './errorHandler.js';
+import { t } from '../i18n/index.js';
 
 export const resolveFolderConflict = async (safeName, maxRetries = 3) => {
     let currentName = safeName;
@@ -17,20 +18,14 @@ export const resolveFolderConflict = async (safeName, maxRetries = 3) => {
     try {
         while (await checkIfExist(paths.dir)) {
             if (attempts > maxRetries) {
-                console.error(
-                    chalk.red('❌ Número máximo de tentativas atingido.')
-                );
+                console.error(chalk.red(`❌ ${t('error.max.attempts')}`));
                 return { canceled: true };
             }
 
             const action = await askConflictPrompt(currentName);
 
             if (action == 'cancel') {
-                console.log(
-                    chalk.yellow(
-                        '⚠️ Criação de projeto cancelada pelo usuário.'
-                    )
-                );
+                console.log(chalk.yellow(`⚠️ ${t('error.creation.cancel')}`));
                 return { canceled: true };
             }
 
@@ -38,9 +33,7 @@ export const resolveFolderConflict = async (safeName, maxRetries = 3) => {
                 const { newName } = await askNewNamePrompt();
                 if (newName == currentName) {
                     console.log(
-                        chalk.yellow(
-                            '⚠️ Você digitou o mesmo nome. Nenhuma mudança feita.'
-                        )
+                        chalk.yellow(`⚠️ ${t('error.creation.repeat_name')}`)
                     );
                     continue;
                 }
@@ -52,7 +45,7 @@ export const resolveFolderConflict = async (safeName, maxRetries = 3) => {
 
             if (action == 'overwrite') {
                 await runWithSpinner(
-                    'Apagando diretório existente',
+                    t('error.creation.remove_directory'),
                     async () => {
                         await actionOverwrite(paths.dir);
                     }
@@ -63,7 +56,7 @@ export const resolveFolderConflict = async (safeName, maxRetries = 3) => {
 
         return { safeName: currentName, paths };
     } catch (err) {
-        errorHandler('Erro ao resolver conflito de pastas', err);
+        errorHandler(t('error.catch.conflict'), err);
         return { canceled: true };
     }
 };
