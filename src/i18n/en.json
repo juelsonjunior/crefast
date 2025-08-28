@@ -3,8 +3,9 @@
   "cli.create.description": "Create a new project with the chosen structure",
   "cli.name.project": "Name project",
   "cli.git.init": "Not initialize repository git",
-  "cli.structure": "Type structure",
+  "cli.structure": "Type structure (REST=rest, MODULAR=modular)",
   "cli.dependences": "Not install dependences automatic",
+  "cli.oop.choice": "Choose coding style (OBJECT-ORIENTED=oop, FUNCTIONAL-PROGRAMMING=fp)",
 
   "project.created.success": "Project created successfully:",
   "project.created.steps": "Next steps:",
