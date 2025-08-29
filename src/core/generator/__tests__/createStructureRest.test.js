@@ -35,7 +35,6 @@ describe('createStructureREST', () => {
 
     // Cenário 1: Sucesso (caminho completo)
     test('cria a estrutura do projeto REST com sucesso', async () => {
-        // Mock de sucesso para resolveFolderConflict
         const pathsMock = {
             dir: '/fake/path',
             controllersPath: '/fake/path/controllers',

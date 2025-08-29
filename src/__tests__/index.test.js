@@ -8,7 +8,6 @@ jest.mock('commander', () => {
         description: jest.fn().mockReturnThis(),
         version: jest.fn().mockReturnThis(),
         option: jest.fn().mockReturnThis(),
-        // Adicione o mock para parseOptions aqui
         parseOptions: jest
             .fn()
             .mockReturnValue({ args: ['mock-arg'], unknown: [] }),
@@ -19,8 +18,6 @@ jest.mock('commander', () => {
     return { Command: jest.fn(() => mockProgram) };
 });
 
-// 2. Mock the `createCommand` function as well.
-//    This allows you to check if it's called correctly.
 jest.mock('../commands/create.js', () => ({
     createCommand: jest.fn(),
 }));

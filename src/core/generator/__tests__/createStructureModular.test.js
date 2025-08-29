@@ -88,7 +88,7 @@ describe('createStructureModular', () => {
         );
     });
 
-    // TESTE 2: Cenário de cancelamento (seu teste original)
+    // TESTE 2: Cenário de cancelamento 
     test('retorna false se a criação for cancelada', async () => {
         utilsIndex.resolveFolderConflict.mockResolvedValue({
             canceled: true,
@@ -101,7 +101,7 @@ describe('createStructureModular', () => {
         expect(generator.structureBuilder).not.toHaveBeenCalled();
     });
 
-    // TESTE 3: Cenário de erro (seu teste original)
+    // TESTE 3: Cenário de erro
     test('chama o errorHandler se ocorrer um erro', async () => {
         utilsIndex.resolveFolderConflict.mockRejectedValue(new Error('Test error'));
 
@@ -114,7 +114,7 @@ describe('createStructureModular', () => {
         );
     });
 
-    // TESTE 4: Cenário FP (Funcional) - AJUSTADO para cobrir a linha 44
+    // TESTE 4: Cenário FP (Funcional) 
     test('Cria estrutura Modular com o estilo de codificação funcional (FP)', async () => {
         const answers = {
             safeName: 'meu-app-fp',
@@ -152,15 +152,13 @@ describe('createStructureModular', () => {
 
         // Asserções
         expect(result).toBe(true);
-        expect(utilsIndex.createFromTemplate).toHaveBeenCalledTimes(12); // Sem o bindController.ejs, a contagem é 13
+        expect(utilsIndex.createFromTemplate).toHaveBeenCalledTimes(12);
         expect(coreIndex.createIfNotExists).toHaveBeenCalledTimes(4);
         
-        // Verifique que o template ESPECÍFICO do OOP (bindController) NÃO foi chamado
         expect(utilsIndex.createFromTemplate).not.toHaveBeenCalledWith(
             expect.stringContaining('bindController')
         );
 
-        // Verifique que o template ESPECÍFICO do FP foi usado
         expect(utilsIndex.createFromTemplate).toHaveBeenCalledWith(
             resolvePathTemplate('modular/fp', 'app.ejs'),
             pathsMock.appPath

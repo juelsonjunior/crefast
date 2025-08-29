@@ -8,16 +8,12 @@ jest.mock('../../utils/index.js', () => ({
 }));
 
 describe('createCommand', () => {
-    // Declara a variável `program` e a função `commandAction`
     let program;
     let commandAction;
 
     // Configura o mock antes de cada teste
     beforeEach(() => {
         program = new Command();
-        
-        // Mockamos o método command para capturar a função `action`
-        // Isso nos permite testá-la separadamente
         program.command = jest.fn().mockReturnValue({
             description: jest.fn().mockReturnThis(),
             option: jest.fn().mockReturnThis(),
@@ -33,10 +29,10 @@ describe('createCommand', () => {
     test('Deve registrar o comando "create" com as opções corretas', () => {
         createCommand(program);
 
-        // Verificamos se 'program.command' foi chamado com o nome do comando e a descrição
+        // Verificar se 'program.command' foi chamado com o nome do comando e a descrição
         expect(program.command).toHaveBeenCalledWith('create [project_name]');
         
-        // Verificamos se as opções foram registradas
+        // Verificar se as opções foram registradas
         const command = program.command.mock.results[0].value;
         expect(command.option).toHaveBeenCalledWith('-n, --name <name>', 'Nome do projeto');
         expect(command.option).toHaveBeenCalledWith('-t, --structure <type>', 'Tipo de estrutura (REST=rest, MODULAR=modular)');
@@ -49,10 +45,10 @@ describe('createCommand', () => {
         const projectName = 'meu-projeto-arg';
         const options = {};
         
-        // Executamos a função 'action' com os argumentos e opções
+        // Executar a função 'action' com os argumentos e opções
         await commandAction(projectName, options);
 
-        // Verificamos se mergeAnswers foi chamado com o objeto de opções correto
+        // Verificar se mergeAnswers foi chamado com o objeto de opções correto
         expect(utils.mergeAnswers).toHaveBeenCalledWith({ name: 'meu-projeto-arg' });
     });
 
@@ -77,8 +73,6 @@ describe('createCommand', () => {
         
         await commandAction(projectName, options);
 
-        // O seu código prioriza o argumento e o armazena na opção,
-        // então esperamos que a opção `name` seja o valor do argumento
         expect(utils.mergeAnswers).toHaveBeenCalledWith({ name: 'meu-projeto-option' });
     });
 });

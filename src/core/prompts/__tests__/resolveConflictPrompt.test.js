@@ -43,22 +43,16 @@ describe('resolveConflictPrompt', () => {
             newName: 'novo-nome---',
         });
 
-        // Este teste agora também verifica a validação.
-        // Capturamos a configuração do prompt que foi passada
         const promptOptions = inquirer.prompt.mock.calls[0][0][0];
 
-        // Validamos uma entrada vazia, acionando o branch de erro
         const validationResult = promptOptions.validate('');
         expect(validationResult).toBe('O nome do projeto não pode estar vazio.');
 
-        // Validamos uma entrada válida, acionando o branch de sucesso
         const validationResult2 = promptOptions.validate('projeto-valido');
         expect(validationResult2).toBe(true);
     });
 
     test('exibe erro para nome de projeto vazio', async () => {
-        // Pega o objeto de configuração que a função cria
-        // Para fins de teste de validação, podemos criar um mock simples
         const promptConfig = {
             validate(input) {
                 return input.trim()

@@ -26,7 +26,6 @@ describe('askPromptName', () => {
 
     test('exibe erro para nome de projeto vazio', async () => {
         inquirer.prompt.mockImplementation((config) => {
-            // Guarda a função de validação passada para o prompt
             const validationFn = config[0].validate;
 
             // Testa os dois cenários da validação diretamente

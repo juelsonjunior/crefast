@@ -22,9 +22,8 @@ describe('structurePrompt', () => {
     const structureOptions = 'rest';
     const result = await askStruturePrompt(structureOptions);
 
-    // Esperamos que o prompt não seja chamado
     expect(inquirer.prompt).not.toHaveBeenCalled();
-    // Esperamos que o valor retornado seja o mesmo que foi passado, mas em maiúsculas
+    
     expect(result).toBe(structureOptions.toUpperCase());
 });
 });
