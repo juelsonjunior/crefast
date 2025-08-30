@@ -44,8 +44,14 @@ describe('i18n', () => {
     });
 
     test('Deve retornar a chave se a tradução não for encontrada para a chave', () => {
-    const key = 'chave.que.nao.existe';
-    const translatedString = t(key);
-    expect(translatedString).toBe(key); 
-});
+        const key = 'chave.que.nao.existe';
+        const translatedString = t(key);
+        expect(translatedString).toBe(key);
+    });
+
+    test('Deve retornar a chave se o valor da tradução for nulo', () => {
+        const key = 'valor.nulo';
+        const translatedString = t(key);
+        expect(translatedString).toBe(key);
+    });
 });
