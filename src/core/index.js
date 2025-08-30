@@ -21,3 +21,4 @@ export {
     actionOverwrite,
     askNewNamePrompt,
 } from './prompts/resolveConflictPrompt.js';
+export { packageManagerPrompt } from './prompts/packageManagerPrompt.js';
