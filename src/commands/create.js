@@ -8,6 +8,7 @@ export const createCommand = (program) => {
         .option('-n, --name <name>', t('cli.name.project'))
         .option('-s, --style <type>', `${t('cli.oop.choice')}`)
         .option('-t, --structure <type>', `${t('cli.structure')}`)
+        .option('-p, --package <type>', `${t('cli.package.choise')}`)
         .option('--no-git', t('cli.git.init'))
         .action(async (projectName, options) => {
             const name = options.name || projectName;
