@@ -43,7 +43,7 @@ export const mergeAnswers = async (options) => {
         if (!success) {
             throw new Error(t('error.creation.failed'));
         }
-        finishMessage(name);
+        finishMessage(name, packageManager);
     } catch (error) {
         errorHandler(t('error.catch.handler'), error);
     }
