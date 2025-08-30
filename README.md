@@ -46,7 +46,7 @@ Se você prefere um fluxo de trabalho mais rápido, pode usar as flags para conf
 **Exemplo de uso:**
 
 ```bash
-nodezen create --name meu-app --structure modular --style oop --lang en --not-git
+nodezen create --name meu-app --structure modular --style oop --lang en --package yarn --not-git
 ```
 
 ## 📝 Flags Disponíveis
@@ -58,6 +58,7 @@ O comando `create` suporta as seguintes flags:
 | -n, --name <name>      | Define o nome da pasta e do projeto.             | String            | N/A    |
 | -t, --structure <type> | Escolhe o tipo de estrutura do projeto.          | rest, modular     | N/A    |
 | -s, --style <type>     | Define o estilo de código para a estrutura.      | oop, fp           | N/A    |
+| -p, --package <type>   | Escolhe o gerenciador de pacote que quer usar.   | npm, yarn, pnpm   | N/A    |
 | --no-git               | Impede a inicialização de um repositório Git.    | N/A               | N/A    |
 | --lang <lang>          | Define o idioma da CLI para prompts e mensagens. | pt, en            | pt     |
 
