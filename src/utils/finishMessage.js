@@ -1,13 +1,13 @@
 import chalk from 'chalk';
 import { t } from '../i18n/index.js';
 
-export const finishMessage = (projectName) => {
+export const finishMessage = (projectName, packageManager) => {
     const msg = `
 🚀 ${t('project.created.success')} ${chalk.green(projectName)}
 
 ${t('project.created.steps')}
 1. ${chalk.gray(`📂 cd ${projectName}`)}
-2. ${chalk.gray('🛠️  npm run dev')}
+2. ${chalk.gray(`🛠️ ${packageManager} run dev`)}
 
         ${chalk.yellow(`✨ ${t('project.created.thanks')}`)}
 
