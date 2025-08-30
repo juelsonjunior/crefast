@@ -11,7 +11,7 @@ ${t('project.created.steps')}
 
         ${chalk.yellow(`✨ ${t('project.created.thanks')}`)}
 
-${chalk.white(`${chalk.bold(`👉 ${t('project.created.fork')}`)} https://github.com/juelsonjunior/nodegen`)}
+${chalk.white(`${chalk.bold(`👉 ${t('project.created.fork')}`)} https://github.com/juelsonjunior/nodezen`)}
 ${chalk.white(`${chalk.bold(`💬 ${t('project.created.networking')}`)} https://www.linkedin.com/in/juelson-júnior-5b4974310`)}
     `;
 

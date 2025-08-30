@@ -5,8 +5,7 @@ import { setLang, t } from './i18n/index.js';
 
 const program = new Command();
 
-program
-  .option('--lang <lang>', 'Idioma da CLI (pt ou en)', 'pt');
+program.option('--lang <lang>', 'Idioma da CLI (pt ou en)', 'pt');
 
 // Usa parseOptions() para ler as opções passadas na linha de comando.
 // Isso não dispara ações ou ajuda, apenas lê as opções.
@@ -18,9 +17,9 @@ const opts = program.opts();
 setLang(opts.lang);
 
 program
-  .name('nodegen')
-  .description('🚀 ' + t('cli.description'))
-  .version('1.0.0');
+    .name('nodezen')
+    .description('🚀 ' + t('cli.description'))
+    .version('1.0.0');
 
 createCommand(program);
 

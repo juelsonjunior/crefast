@@ -22,7 +22,7 @@ jest.mock('../commands/create.js', () => ({
     createCommand: jest.fn(),
 }));
 
-describe('nodegen CLI entry point', () => {
+describe('nodezen CLI entry point', () => {
     test('Deve registrar comandos e analisar argumentos', () => {
         require('../index.js');
 
@@ -30,14 +30,16 @@ describe('nodegen CLI entry point', () => {
         const mockProgramInstance = Command.mock.results[0].value;
 
         mockProgramInstance.parseOptions.mockReturnValue({
-            args: ['node', 'nodegen'],
+            args: ['node', 'nodezen'],
             unknown: ['--lang', 'pt'],
         });
 
         expect(mockProgramInstance.opts).toHaveBeenCalled();
         expect(mockProgramInstance.opts()).toEqual({ lang: 'pt' });
-        expect(mockProgramInstance.parseOptions).toHaveBeenCalledWith(process.argv);
-        expect(mockProgramInstance.name).toHaveBeenCalledWith('nodegen');
+        expect(mockProgramInstance.parseOptions).toHaveBeenCalledWith(
+            process.argv
+        );
+        expect(mockProgramInstance.name).toHaveBeenCalledWith('nodezen');
         expect(mockProgramInstance.description).toHaveBeenCalledWith(
             '🚀 Gerador de estrutura para projetos Node.js'
         );
