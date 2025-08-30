@@ -3,6 +3,7 @@ import {
     gitPrompt,
     oopPrompt,
     askStruturePrompt,
+    packageManagerPrompt,
     createStructureModular,
     createStructureREST,
 } from '../core/index.js';
@@ -10,7 +11,8 @@ import { finishMessage } from './finishMessage.js';
 import { errorHandler } from './errorHandler.js';
 import { t } from '../i18n/index.js';
 export const mergeAnswers = async (options) => {
-    try {
+    try {        
+        const packageManager = await packageManagerPrompt(options.package);
         const name = await askProjectName(options.name);
         const use_git = await gitPrompt(options.git);
         const use_oop = await oopPrompt(options.style);
@@ -22,6 +24,7 @@ export const mergeAnswers = async (options) => {
             use_git,
             use_oop,
             structure,
+            packageManager,
             safeName: name,
         };
 
