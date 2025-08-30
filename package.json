@@ -1,7 +1,7 @@
 {
     "name": "nodezen",
     "version": "1.0.0",
-    "description": "Nodezen CLI para geração de projectos node js",
+    "description": "Nodezen CLI para geração de projectos Node JS",
     "main": "index.js",
     "bin": {
         "nodezen": "./bin/cli.js"
@@ -15,7 +15,18 @@
         "nodejs",
         "boilerplate",
         "rest",
-        "mvc"
+        "mvc",
+        "node",
+        "javascript",
+        "command-line",
+        "tool",
+        "gerador",
+        "scaffolding",
+        "starter",
+        "rest-api",
+        "api",
+        "express",
+        "nodezen"
     ],
     "author": "Juelson Júnior",
     "license": "ISC",
