@@ -21,7 +21,7 @@ const packageManagerConfig = {
         installCommand: 'add',
         devFlag: '--save-dev',
         initCommand: 'init',
-        initArgs: ['-y'],
+        initArgs: [],
     },
 };
 export const initializeProject = async (dir, serverBase, answers) => {
@@ -41,9 +41,7 @@ export const initializeProject = async (dir, serverBase, answers) => {
 
     try {
         await runWithSpinner(`${t('install.dependences')} ☕`, async () => {
-            const resultPackage = await validatePackageManager(packageManager);
-
-            console.log("Ver o result", resultPackage);
+            await validatePackageManager(packageManager);
             
             // Executa o comando de inicialização
             await execa(packageManager, [initCommand, ...initArgs], {
