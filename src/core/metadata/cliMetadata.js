@@ -13,12 +13,15 @@ export const saveCliMetadata = async (dir, dataAnswers) => {
 
         const metadata = {
             name_project: dataAnswers.safeName,
+            git_init: dataAnswers.use_git,
             structure: dataAnswers.structure.toLowerCase(),
-            authorCLI: 'Juelson Júnior',
-            createAt: new Date().toISOString(),
+            style_code: dataAnswers.use_oop,
+            package_manager: dataAnswers.packageManager, 
+            cli_author: 'Juelson Júnior',
             cli_verion: cliPkg.version,
             node_verion: process.version,
             platform: process.platform,
+            create_at: new Date().toISOString(),
         };
 
         await writeFile(filePath, JSON.stringify(metadata, null, 2));
