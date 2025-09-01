@@ -9,7 +9,7 @@ export const askConflictPrompt = async (projectName) => {
             name: 'action',
             message: `${t('prompt.conflict.question1')} ${projectName} ${t('prompt.conflict.question2')}`,
             choices: [
-                { name: `🔁 ${t('Rename project')}`, value: 'rename' },
+                { name: `🔁 ${t('prompt.conflict.rename')}`, value: 'rename' },
                 {
                     name: `🧨 ${t('prompt.conflict.overwrite')}`,
                     value: 'overwrite',
