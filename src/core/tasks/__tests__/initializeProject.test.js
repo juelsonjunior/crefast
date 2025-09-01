@@ -4,6 +4,7 @@ import { runWithSpinner } from '../../../utils/runWithSpinner.js';
 import { errorHandler } from '../../../utils/index.js';
 import { initializeProject } from '../initializeProject.js';
 
+//Corrigir compatibilidade ESM para rodar este teste
 jest.mock('execa', () => {
   const execaMock = jest.fn();
   return { __esModule: true, default: execaMock };
