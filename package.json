@@ -10,6 +10,9 @@
         "test": "jest",
         "coverage": "jest --coverage"
     },
+    "engines": {
+        "node": ">=18"
+    },
     "keywords": [
         "cli",
         "nodejs",
@@ -28,6 +31,14 @@
         "express",
         "nodezen"
     ],
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/juelsonjunior/nodezen.git"
+    },
+    "bugs": {
+        "url": "https://github.com/juelsonjunior/nodezen/issues"
+    },
+    "homepage": "https://github.com/juelsonjunior/nodezen#readme",
     "author": "Juelson Júnior",
     "license": "ISC",
     "type": "module",
