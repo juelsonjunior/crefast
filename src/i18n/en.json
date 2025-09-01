@@ -8,6 +8,7 @@
     "cli.oop.choice": "Choose coding style (OBJECT-ORIENTED=oop, FUNCTIONAL-PROGRAMMING=fp)",
     "cli.language": "CLI language (pt ou en)",
     "cli.package.choise": "Choose package manager (npm, yarn, pnpm)",
+    "valor.nulo": null,
 
     "project.created.success": "Project created successfully:",
     "project.created.steps": "Next steps:",
