@@ -4,7 +4,7 @@
 
 # Comece a usar
 
-Desenvolva de forma mais rápida e inteligente. Nodezen é uma CLI completa para o ecossistema Node.js que elimina o trabalho repetitivo de configuração inicial. Com suporte a arquiteturas REST e Modulares, essa ferramenta gera uma estrutura robusta e pronta para produção, permitindo que você comece a codificar imediatamente.
+Desenvolva de forma mais rápida e inteligente. Crefast é uma CLI completa para o ecossistema Node.js que elimina o trabalho repetitivo de configuração inicial. Com suporte a arquiteturas REST e Modulares, essa ferramenta gera uma estrutura robusta e pronta para produção, permitindo que você comece a codificar imediatamente.
 
 ## ✨ Recursos
 
@@ -23,20 +23,20 @@ Desenvolva de forma mais rápida e inteligente. Nodezen é uma CLI completa para
 
 ## 📦 Instalação
 
-Para começar a usar o Nodezen, instale-o globalmente via npm:
+Para começar a usar o Crefast, instale-o globalmente via npm:
 
 ```bash
-npm install -g nodezen
+npm install -g crefast
 ```
 
 ## 🚀 Uso
 
 ### Modo Interativo
 
-Para um guia passo a passo, simplesmente execute o comando create sem nenhuma flag. O Nodezen fará as perguntas necessárias para configurar o seu projeto.
+Para um guia passo a passo, simplesmente execute o comando create sem nenhuma flag. O Crefast fará as perguntas necessárias para configurar o seu projeto.
 
 ```bash
-nodezen create
+crefast create
 ```
 
 ### Modo Flag
@@ -46,7 +46,7 @@ Se você prefere um fluxo de trabalho mais rápido, pode usar as flags para conf
 **Exemplo de uso:**
 
 ```bash
-nodezen create --name meu-app --structure modular --style oop --lang en --package yarn --not-git
+crefast create --name meu-app --structure modular --style oop --lang en --package yarn --not-git
 ```
 
 ## 📝 Flags Disponíveis
@@ -118,7 +118,7 @@ meu-projeto/
 
 ## 🌐 Internacionalização
 
-O Nodezen suporta os idiomas **Português (pt)** e **Inglês (en)**.  
+O Crefast suporta os idiomas **Português (pt)** e **Inglês (en)**.  
 Por padrão, a CLI usará `pt`, mas você pode alterá-lo com a flag `--lang`.
 
 ## 📜 Licença

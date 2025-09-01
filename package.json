@@ -1,10 +1,10 @@
 {
-    "name": "nodezen",
+    "name": "crefast",
     "version": "1.0.0",
-    "description": "Nodezen CLI para geração de projectos Node JS",
+    "description": "Crefast CLI para geração de projectos Node JS",
     "main": "index.js",
     "bin": {
-        "nodezen": "./bin/cli.js"
+        "crefast": "bin/cli.js"
     },
     "scripts": {
         "test": "jest",
@@ -29,16 +29,16 @@
         "rest-api",
         "api",
         "express",
-        "nodezen"
+        "crefast"
     ],
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/juelsonjunior/nodezen.git"
+        "url": "git+https://github.com/juelsonjunior/crefast.git"
     },
     "bugs": {
-        "url": "https://github.com/juelsonjunior/nodezen/issues"
+        "url": "https://github.com/juelsonjunior/crefast/issues"
     },
-    "homepage": "https://github.com/juelsonjunior/nodezen#readme",
+    "homepage": "https://github.com/juelsonjunior/crefast#readme",
     "author": "Juelson Júnior",
     "license": "ISC",
     "type": "module",

@@ -22,7 +22,7 @@ jest.mock('../commands/create.js', () => ({
     createCommand: jest.fn(),
 }));
 
-describe('nodezen CLI entry point', () => {
+describe('crefast CLI entry point', () => {
     test('Deve registrar comandos e analisar argumentos', () => {
         require('../index.js');
 
@@ -30,7 +30,7 @@ describe('nodezen CLI entry point', () => {
         const mockProgramInstance = Command.mock.results[0].value;
 
         mockProgramInstance.parseOptions.mockReturnValue({
-            args: ['node', 'nodezen'],
+            args: ['node', 'crefast'],
             unknown: ['--lang', 'pt'],
         });
 
@@ -39,7 +39,7 @@ describe('nodezen CLI entry point', () => {
         expect(mockProgramInstance.parseOptions).toHaveBeenCalledWith(
             process.argv
         );
-        expect(mockProgramInstance.name).toHaveBeenCalledWith('nodezen');
+        expect(mockProgramInstance.name).toHaveBeenCalledWith('crefast');
         expect(mockProgramInstance.description).toHaveBeenCalledWith(
             '🚀 Gerador de estrutura para projetos Node.js'
         );

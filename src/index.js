@@ -17,7 +17,7 @@ const opts = program.opts();
 setLang(opts.lang);
 
 program
-    .name('nodezen')
+    .name('crefast')
     .description('🚀 ' + t('cli.description'))
     .version('1.0.0');
 
