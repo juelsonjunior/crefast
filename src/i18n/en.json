@@ -46,7 +46,7 @@
     "prompt.project.empty": "Project name cannot be empty.",
     "prompt.conflict.question1": "The directory",
     "prompt.conflict.question2": "already exists. What do you want to do?",
-    "prompt.conflict.rename.msg": "Rename project",
+    "prompt.conflict.rename": "Rename project",
     "prompt.conflict.rename.question": "Enter the new project name:",
     "prompt.conflict.overwrite": "Overwrite (DELETE folder)",
     "prompt.conflict.cancel": "Cancel",
