@@ -33,13 +33,13 @@ export const resolveFolderConflict = async (safeName, maxRetries = 3) => {
                 const { newName } = await askNewNamePrompt();
                 if (newName == currentName) {
                     console.log(
-                        chalk.yellow(`⚠️ ${t('error.creation.repeat_name')}`)
+                        chalk.yellow(`⚠️ ${t('error.creation.repeat_name', attempts)}`)
                     );
+                    attempts++;
                     continue;
                 }
                 currentName = newName;
                 paths = defineProjectPaths(currentName);
-                attempts++;
                 continue;
             }
 
